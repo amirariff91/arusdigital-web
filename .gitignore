@@ -1,0 +1,6 @@
+.DS_Store
+*.pptx.lock
+~$*
+.env
+*.pyc
+__pycache__/

@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miccy by Arus Digital — AI Intelligence Officer for Malaysian CEOs | arusdigital.com</title>
+<meta name="description" content="Miccy delivers daily AI intelligence briefs to Malaysian CEOs and decision makers. Financial alerts, competitor moves, anomalies — by 7am. From RM 2,990/mo.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://arusdigital.com">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Miccy by Arus Digital — AI Intelligence Officer for Malaysian CEOs">
+<meta property="og:description" content="Miccy delivers daily AI intelligence briefs to Malaysian CEOs and decision makers. Financial alerts, competitor moves, anomalies — by 7am. From RM 2,990/mo.">
+<meta property="og:url" content="https://arusdigital.com">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://arusdigital.com/og-image.png">
+<meta property="og:locale" content="en_MY">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Miccy by Arus Digital — AI Intelligence Officer for Malaysian CEOs">
+<meta name="twitter:description" content="Daily AI intelligence briefings for Malaysian CEOs. Financial alerts, competitor signals, anomaly detection — by 7am.">
+
+<!-- Organization Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Arus Digital",
+  "url": "https://arusdigital.com",
+  "logo": "https://arusdigital.com/logo.png",
+  "description": "Malaysia's first 100% AI-operated company. Builders of Miccy — AI Intelligence Officer for Malaysian CEOs.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Kuala Lumpur",
+    "addressCountry": "MY"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "sales",
+    "availableLanguage": ["English", "Malay"]
+  }
+}
+</script>
+
+<!-- Miccy Product Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Miccy",
+  "applicationCategory": "BusinessApplication",
+  "description": "AI Intelligence Officer for Malaysian CEOs and decision makers. Delivers daily briefs on financials, competitor moves, and anomalies via WhatsApp or Telegram.",
+  "operatingSystem": "WhatsApp, Telegram, Web",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Miccy Ops",
+      "price": "2990",
+      "priceCurrency": "MYR",
+      "billingIncrement": "month",
+      "description": "AI operations intelligence layer for SME owners and ops-focused leaders"
+    },
+    {
+      "@type": "Offer",
+      "name": "Miccy Executive",
+      "price": "5990",
+      "priceCurrency": "MYR",
+      "billingIncrement": "month",
+      "description": "Morning intelligence brief + competitor monitoring for COOs and founders"
+    },
+    {
+      "@type": "Offer",
+      "name": "Miccy Command",
+      "price": "12000",
+      "priceCurrency": "MYR",
+      "billingIncrement": "month",
+      "description": "Full intelligence platform for group CEOs, GLCs and conglomerates"
+    }
+  ],
+  "provider": {
+    "@type": "Organization",
+    "name": "Arus Digital",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Kuala Lumpur",
+      "addressCountry": "MY"
+    }
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:   #080810;
+  --dark:    #0d0d1a;
+  --surface: #111120;
+  --raised:  #181826;
+  --border:  rgba(201,162,39,0.13);
+  --gold:    #c9a227;
+  --gold-d:  rgba(201,162,39,0.5);
+  --gold-f:  rgba(201,162,39,0.07);
+  --gold-ff: rgba(201,162,39,0.04);
+  --white:   #f4f2ec;
+  --muted:   rgba(244,242,236,0.44);
+  --faint:   rgba(244,242,236,0.18);
+  --serif:   'DM Serif Display', Georgia, serif;
+  --sans:    'Plus Jakarta Sans', system-ui, sans-serif;
+  --r:       12px;
+  --r-lg:    20px;
+}
+
+html { background: var(--black); color: var(--white); font-family: var(--sans); font-size: clamp(15px, 1.05vw, 17px); line-height: 1.65; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body { overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+
+/* ── Layout ── */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 2.5rem); }
+.section { padding: clamp(4rem, 8vw, 7rem) 0; }
+.section + .section { border-top: 1px solid var(--border); }
+
+/* ── Nav ── */
+body > nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(8,8,16,0.96); backdrop-filter: blur(20px);
+  border-bottom: none;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.04), 0 4px 32px rgba(0,0,0,0.5);
+  padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+}
+.nav-logo {
+  font-family: var(--serif); font-size: 1.1rem; color: var(--white);
+  display: flex; align-items: center; gap: 0.45rem;
+}
+.nav-dot { width: 7px; height: 7px; background: var(--gold); border-radius: 50%; animation: pulse 2.5s ease-in-out infinite; }
+@keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.4; transform:scale(.65); } }
+.nav-links { display: flex; align-items: center; gap: 2rem; }
+.nav-links a { font-size: 0.84rem; font-weight: 500; color: var(--muted); transition: color .2s; }
+.nav-links a:hover { color: var(--white); }
+.nav-cta {
+  font-size: 0.82rem; font-weight: 700; color: var(--black);
+  background: var(--gold); border-radius: 7px; padding: 0.45rem 1.1rem;
+  transition: opacity .2s, transform .15s;
+}
+.nav-cta:hover { opacity: .88; transform: translateY(-1px); }
+@media (max-width: 640px) { .nav-links { display: none; } }
+
+/* ── Shared typography ── */
+.label {
+  display: inline-flex; align-items: center; gap: .45rem;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--gold); background: transparent; border: 1px solid rgba(201,162,39,0.2);
+  border-radius: 100px; padding: .3rem .9rem;
+}
+.section-tag { font-size: .7rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin-bottom: .75rem; }
+.section-title { font-family: var(--serif); font-size: clamp(1.85rem, 3.5vw, 2.85rem); line-height: 1.1; margin-bottom: .75rem; letter-spacing: -0.01em; }
+.section-title em { font-style: italic; color: var(--gold); }
+.section-sub { color: var(--muted); max-width: 500px; font-weight: 300; font-size: .95rem; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--gold); color: var(--black); font-weight: 700;
+  font-size: .9rem; padding: .75rem 1.6rem; border-radius: 8px;
+  transition: opacity .2s, transform .15s;
+}
+.btn-primary:hover { opacity: .88; transform: translateY(-1px); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: .5rem;
+  border: 1px solid var(--border); color: var(--white); font-weight: 500;
+  font-size: .9rem; padding: .75rem 1.6rem; border-radius: 8px;
+  transition: border-color .2s, transform .15s;
+}
+.btn-secondary:hover { border-color: var(--gold-d); transform: translateY(-1px); }
+
+/* ── Hero ── */
+.hero {
+  padding: clamp(9.5rem, 16vw, 13rem) 0 clamp(4rem, 7vw, 6rem);
+  text-align: center; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: -30%; left: 50%; transform: translateX(-50%);
+  width: 900px; height: 700px;
+  background: radial-gradient(ellipse, rgba(201,162,39,.065) 0%, transparent 68%);
+  pointer-events: none;
+}
+.hero .label { margin-bottom: 1.8rem; }
+.hero h1 {
+  font-family: var(--serif); font-size: clamp(2.7rem, 6.5vw, 5rem);
+  line-height: 1.05; max-width: 840px; margin: 0 auto 1.5rem;
+  letter-spacing: -0.015em;
+}
+.hero h1 em { font-style: italic; color: var(--gold); }
+.hero-sub {
+  font-size: clamp(.95rem, 1.4vw, 1.1rem); color: var(--muted); font-weight: 300;
+  max-width: 520px; margin: 0 auto 2.5rem;
+}
+.hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.hero-stats {
+  display: flex; justify-content: center; gap: clamp(2rem, 5vw, 5rem);
+  flex-wrap: wrap; margin-top: 4rem;
+  padding-top: 3rem; border-top: 1px solid var(--border);
+}
+.stat-num { font-family: var(--serif); font-size: 1.9rem; color: var(--gold); }
+.stat-label { font-size: .76rem; color: var(--muted); margin-top: .2rem; }
+
+/* ── How Miccy works ── */
+.how-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem;
+  margin-top: 3rem;
+}
+@media (max-width: 680px) { .how-grid { grid-template-columns: 1fr; } }
+.how-step {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 2rem;
+  position: relative; transition: border-color .2s;
+}
+.how-step:hover { border-color: var(--gold-d); }
+.how-num {
+  font-family: var(--serif); font-size: .8rem; color: var(--gold);
+  opacity: .55; margin-bottom: 1rem;
+}
+.how-icon { font-size: 1.6rem; margin-bottom: .9rem; }
+.how-step h3 { font-weight: 700; font-size: 1rem; margin-bottom: .5rem; }
+.how-step p { color: var(--muted); font-size: .86rem; line-height: 1.6; }
+.how-integrations {
+  display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem;
+}
+.how-tag {
+  font-size: .68rem; font-weight: 600; color: var(--gold);
+  background: var(--gold-ff); border: 1px solid var(--border);
+  border-radius: 4px; padding: .15rem .5rem;
+}
+
+/* ── Brief preview ── */
+.brief-preview {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 1.75rem; margin-top: 3rem;
+  max-width: 700px; margin-left: auto; margin-right: auto;
+}
+.brief-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; }
+.brief-title { font-family: var(--serif); font-size: 1.1rem; }
+.brief-date { font-size: .75rem; color: var(--muted); }
+.brief-items { display: flex; flex-direction: column; gap: .75rem; }
+.brief-item { display: flex; align-items: flex-start; gap: .75rem; }
+.brief-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px;
+}
+.brief-dot.critical { background: #e05252; }
+.brief-dot.watch { background: #e0a052; }
+.brief-dot.oppty { background: #52a0e0; }
+.brief-item-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+.brief-item-text { font-size: .86rem; color: var(--white); margin-top: .15rem; }
+
+/* ── Pricing ── */
+.pricing-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem;
+  margin-top: 3rem; align-items: start;
+}
+@media (max-width: 780px) { .pricing-grid { grid-template-columns: 1fr; } }
+.tier-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 2rem;
+  display: flex; flex-direction: column; gap: 1.25rem;
+  position: relative; overflow: hidden; transition: border-color .2s, transform .15s;
+}
+.tier-card:hover { border-color: var(--gold-d); transform: translateY(-2px); }
+.tier-card.featured {
+  border-color: rgba(201,162,39,0.45);
+  background: linear-gradient(160deg, rgba(201,162,39,.08) 0%, var(--surface) 55%);
+  box-shadow: 0 0 0 1px rgba(201,162,39,0.08), 0 8px 40px rgba(0,0,0,0.35);
+}
+.tier-card.featured::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.tier-badge {
+  font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--black); background: var(--gold); border-radius: 4px; padding: .2rem .55rem;
+  align-self: flex-start;
+}
+.tier-name { font-family: var(--serif); font-size: 1.6rem; }
+.tier-price { font-family: var(--serif); }
+.tier-price .amount { font-size: 2.2rem; color: var(--gold); }
+.tier-price .period { font-size: .85rem; color: var(--muted); }
+.tier-setup { font-size: .78rem; color: var(--faint); }
+.tier-for { font-size: .85rem; color: var(--muted); font-weight: 300; line-height: 1.55; }
+.tier-feats { display: flex; flex-direction: column; gap: .55rem; padding: 0; list-style: none; }
+.tier-feats li {
+  display: flex; align-items: flex-start; gap: .6rem;
+  font-size: .84rem; color: var(--muted);
+}
+.tier-feats li::before { content: '✦'; color: var(--gold); flex-shrink: 0; font-size: .7rem; margin-top: 3px; }
+.tier-cta { margin-top: auto; }
+
+/* ── Local LLM ── */
+.llm-bg { background: var(--surface); }
+.llm-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; align-items: start; }
+@media (max-width: 720px) { .llm-layout { grid-template-columns: 1fr; } }
+.model-cards { display: flex; flex-direction: column; gap: 1rem; }
+.model-card {
+  background: var(--raised); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 1.25rem 1.5rem;
+  display: flex; gap: 1rem; align-items: flex-start;
+}
+.model-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+.model-name { font-weight: 700; font-size: .94rem; }
+.model-desc { font-size: .81rem; color: var(--muted); margin-top: .2rem; line-height: 1.55; }
+.model-tag {
+  display: inline-block; margin-top: .45rem;
+  font-size: .67rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--gold); background: var(--gold-ff); border: 1px solid var(--border);
+  border-radius: 4px; padding: .14rem .48rem;
+}
+.llm-why { margin-top: 1.75rem; }
+.llm-why h4 { font-weight: 600; font-size: .9rem; margin-bottom: .9rem; }
+.why-item { display: flex; gap: .7rem; font-size: .84rem; color: var(--muted); margin-bottom: .6rem; }
+.why-ico { color: var(--gold); flex-shrink: 0; }
+.pkg-cards { display: flex; flex-direction: column; gap: 1rem; }
+.pkg-card {
+  background: var(--raised); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 1.5rem;
+  transition: border-color .2s;
+}
+.pkg-card:hover { border-color: var(--gold-d); }
+.pkg-tier { font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
+.pkg-name { font-weight: 700; font-size: .98rem; margin-top: .2rem; }
+.pkg-price { font-family: var(--serif); font-size: 1.25rem; color: var(--gold); margin: .4rem 0; }
+.pkg-desc { font-size: .81rem; color: var(--muted); }
+
+/* ── Services ── */
+.services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
+@media (max-width: 640px) { .services-grid { grid-template-columns: 1fr; } }
+.svc-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 2rem;
+  transition: border-color .2s;
+}
+.svc-card:hover { border-color: var(--gold-d); }
+.svc-icon { font-size: 1.7rem; margin-bottom: 1rem; }
+.svc-card h3 { font-weight: 700; font-size: 1rem; margin-bottom: .5rem; }
+.svc-card p { color: var(--muted); font-size: .86rem; line-height: 1.6; margin-bottom: 1rem; }
+.svc-from { font-size: .78rem; color: var(--faint); }
+.svc-from strong { color: var(--gold); }
+
+/* ── Proof section ── */
+.proof-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-top: 3rem; }
+@media (max-width: 720px) { .proof-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 440px) { .proof-grid { grid-template-columns: 1fr; } }
+.proof-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 1.5rem; text-align: center;
+}
+.proof-fn { font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: .4rem; }
+.proof-tool { font-weight: 700; font-size: .92rem; }
+.proof-desc { font-size: .78rem; color: var(--muted); margin-top: .35rem; line-height: 1.55; }
+
+/* ── CTA ── */
+.cta-wrap { text-align: center; }
+.cta-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: clamp(3rem, 6vw, 5rem) clamp(2rem, 5vw, 4rem);
+  max-width: 660px; margin: 0 auto; position: relative; overflow: hidden;
+}
+.cta-box::before {
+  content: ''; position: absolute; bottom: -50%; left: 50%; transform: translateX(-50%);
+  width: 500px; height: 400px;
+  background: radial-gradient(ellipse, rgba(201,162,39,.055) 0%, transparent 68%);
+  pointer-events: none;
+}
+.cta-box h2 { font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: .75rem; }
+.cta-box p { color: var(--muted); font-weight: 300; margin-bottom: 2rem; }
+.cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+/* ── Footer ── */
+footer { border-top: 1px solid var(--border); padding: 2.5rem 0; }
+.footer-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+}
+.footer-brand { font-family: var(--serif); font-size: .98rem; }
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a { font-size: .8rem; color: var(--muted); transition: color .2s; }
+.footer-links a:hover { color: var(--white); }
+.footer-copy { font-size: .76rem; color: var(--faint); }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="Arus Digital homepage">
+      <span class="nav-dot" aria-hidden="true"></span>
+      Arus Digital
+    </a>
+    <div class="nav-links">
+      <a href="#miccy">Miccy</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#local-llm">Local LLM</a>
+      <a href="/about.html">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="https://wa.me/60139844412?text=Hi%2C%20saya%20berminat%20dengan%20Miccy" class="nav-cta" target="_blank" rel="noopener">
+      Get Miccy →
+    </a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="container">
+    <div class="label" role="note">
+      <span aria-hidden="true">●</span>
+      Malaysia's first 100% AI-operated company
+    </div>
+
+    <h1 id="hero-heading">
+      Malaysia's First<br>
+      100% <em>AI-Run</em> Company.
+    </h1>
+
+    <p class="hero-sub">
+      We built <strong>Miccy</strong> — an AI intelligence officer that delivers what every Malaysian CEO needs: the right information, before the window closes. Every morning. In your WhatsApp.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#pricing" class="btn-primary">See Miccy plans →</a>
+      <a href="#miccy" class="btn-secondary">How it works</a>
+    </div>
+
+    <div class="hero-stats" role="list" aria-label="Company highlights">
+      <div role="listitem">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">AI-operated internally</div>
+      </div>
+      <div role="listitem">
+        <div class="stat-num">7am</div>
+        <div class="stat-label">Daily intelligence brief</div>
+      </div>
+      <div role="listitem">
+        <div class="stat-num">48h</div>
+        <div class="stat-label">Miccy setup time</div>
+      </div>
+      <div role="listitem">
+        <div class="stat-num">PDPA</div>
+        <div class="stat-label">Compliant from day one</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHAT IS MICCY ═══ -->
+<section class="section" id="miccy" aria-labelledby="miccy-heading">
+  <div class="container">
+    <div class="section-tag">The product</div>
+    <h2 class="section-title" id="miccy-heading">
+      Miccy — Your AI<br><em>Intelligence Officer.</em>
+    </h2>
+    <p class="section-sub">
+      A dedicated AI intelligence officer for Malaysian CEOs and decision makers. Every morning at 7am, Miccy delivers a sharp, prioritised brief — financials, competitor moves, team signals, anomalies — so you walk into the day already ahead.
+    </p>
+
+    <div class="how-grid">
+      <article class="how-step">
+        <div class="how-num">01</div>
+        <div class="how-icon" aria-hidden="true">🔗</div>
+        <h3>Connect</h3>
+        <p>Point Miccy at your existing systems. No migration, no data warehouse project. Works with what you already have.</p>
+        <div class="how-integrations" aria-label="Supported integrations">
+          <span class="how-tag">Xero</span>
+          <span class="how-tag">HubSpot</span>
+          <span class="how-tag">Shopify</span>
+          <span class="how-tag">Slack</span>
+          <span class="how-tag">GA4</span>
+          <span class="how-tag">Linear</span>
+          <span class="how-tag">Notion</span>
+          <span class="how-tag">+40 more</span>
+        </div>
+      </article>
+      <article class="how-step">
+        <div class="how-num">02</div>
+        <div class="how-icon" aria-hidden="true">👁️</div>
+        <h3>Watch</h3>
+        <p>Miccy monitors everything — financials, operations, market signals, competitor moves — 24 hours a day, 7 days a week. Learns your business patterns over time.</p>
+        <div class="how-integrations" aria-label="Monitoring sources">
+          <span class="how-tag">Ahrefs</span>
+          <span class="how-tag">SimilarWeb</span>
+          <span class="how-tag">News</span>
+          <span class="how-tag">Sentiment</span>
+          <span class="how-tag">TikTok</span>
+        </div>
+      </article>
+      <article class="how-step">
+        <div class="how-num">03</div>
+        <div class="how-icon" aria-hidden="true">⚡</div>
+        <h3>Decide</h3>
+        <p>Every morning: 5 things that need your attention. For each one: 3 options, a recommendation, and the data behind it. Delivered via WhatsApp or Telegram.</p>
+        <div class="how-integrations" aria-label="Delivery channels">
+          <span class="how-tag">WhatsApp</span>
+          <span class="how-tag">Telegram</span>
+          <span class="how-tag">Email</span>
+          <span class="how-tag">Dashboard</span>
+        </div>
+      </article>
+    </div>
+
+    <!-- Brief preview -->
+    <div class="brief-preview" role="img" aria-label="Example Miccy morning brief">
+      <div class="brief-header">
+        <span class="brief-title">Morning Brief — Today, 07:00</span>
+        <span class="brief-date">Isnin, 30 Mac</span>
+      </div>
+      <div class="brief-items">
+        <div class="brief-item">
+          <span class="brief-dot critical" aria-hidden="true"></span>
+          <div>
+            <div class="brief-item-label">Critical</div>
+            <div class="brief-item-text">Revenue down 28% vs 7-day avg. 3 invoices unpaid (RM 340k). Finance team has not flagged this.</div>
+          </div>
+        </div>
+        <div class="brief-item">
+          <span class="brief-dot watch" aria-hidden="true"></span>
+          <div>
+            <div class="brief-item-label">Watch</div>
+            <div class="brief-item-text">Top competitor launched enterprise plan at 40% lower price. 12 new job postings — expansion signal.</div>
+          </div>
+        </div>
+        <div class="brief-item">
+          <span class="brief-dot oppty" aria-hidden="true"></span>
+          <div>
+            <div class="brief-item-label">Opportunity</div>
+            <div class="brief-item-text">Industry peer acquired analytics firm last week. Market consolidation signal — first-mover window: 60–90 days.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRICING ═══ -->
+<section class="section" id="pricing" aria-labelledby="pricing-heading">
+  <div class="container">
+    <div class="section-tag">Pricing</div>
+    <h2 class="section-title" id="pricing-heading">
+      Choose Your<br><em>Miccy Tier.</em>
+    </h2>
+    <p class="section-sub">Three tiers built for different stages of a Malaysian organisation. Every tier includes PDPA-first private server hosting.</p>
+
+    <div class="pricing-grid">
+
+      <!-- Ops -->
+      <article class="tier-card" aria-labelledby="tier-ops-name">
+        <div>
+          <div class="tier-name" id="tier-ops-name">Miccy Ops</div>
+        </div>
+        <div class="tier-price">
+          <span class="amount">RM 2,990</span>
+          <span class="period"> / mo</span>
+        </div>
+        <div class="tier-setup">Implementation &amp; onboarding: RM 5,000</div>
+        <p class="tier-for">The operational intelligence foundation. For SME owners and ops-focused leaders who need their business on autopilot.</p>
+        <ul class="tier-feats" aria-label="Miccy Ops features">
+          <li>WhatsApp &amp; Telegram intelligence delivery</li>
+          <li>3 custom intelligence workflows</li>
+          <li>Ops digest &amp; team coordination layer</li>
+          <li>Automated follow-up: invoices, tasks, deadlines</li>
+          <li>Private server — your data stays yours</li>
+          <li>1 month onboarding support</li>
+        </ul>
+        <div class="tier-cta">
+          <a href="https://wa.me/60139844412?text=Hi%2C%20saya%20berminat%20dengan%20Miccy%20Ops" class="btn-primary" target="_blank" rel="noopener" style="width:100%;justify-content:center;">
+            Start with Ops →
+          </a>
+        </div>
+      </article>
+
+      <!-- Executive -->
+      <article class="tier-card featured" aria-labelledby="tier-exec-name">
+        <div class="tier-badge">Most Popular</div>
+        <div class="tier-name" id="tier-exec-name">Miccy Executive</div>
+        <div class="tier-price">
+          <span class="amount">RM 5,990</span>
+          <span class="period"> / mo</span>
+        </div>
+        <div class="tier-setup">Implementation &amp; onboarding: RM 10,000</div>
+        <p class="tier-for">For COOs, growing founders, and division heads who need intelligence beyond operations — including competitor monitoring and morning briefs.</p>
+        <ul class="tier-feats" aria-label="Miccy Executive features">
+          <li>Everything in Ops</li>
+          <li>Morning Intelligence Brief — daily at 7am</li>
+          <li>10 custom intelligence workflows</li>
+          <li>Competitor monitoring &amp; market signals</li>
+          <li>Financial anomaly detection</li>
+          <li>3-month onboarding support</li>
+        </ul>
+        <div class="tier-cta">
+          <a href="https://wa.me/60139844412?text=Hi%2C%20saya%20berminat%20dengan%20Miccy%20Executive" class="btn-primary" target="_blank" rel="noopener" style="width:100%;justify-content:center;">
+            Start with Executive →
+          </a>
+        </div>
+      </article>
+
+      <!-- Command -->
+      <article class="tier-card" aria-labelledby="tier-cmd-name">
+        <div>
+          <div class="tier-name" id="tier-cmd-name">Miccy Command</div>
+        </div>
+        <div class="tier-price">
+          <span class="amount">RM 12,000</span>
+          <span class="period"> / mo (from)</span>
+        </div>
+        <div class="tier-setup">Implementation: RM 20,000–35,000</div>
+        <p class="tier-for">Untuk CEO syarikat besar, GLC, dan konglomerat yang perlu keterlihatan berbilang entiti dalam satu papan pemuka.</p>
+        <ul class="tier-feats" aria-label="Miccy Command features">
+          <li>Everything in Executive</li>
+          <li>Multi-entity / group consolidation</li>
+          <li>Custom competitor monitoring scope</li>
+          <li>GLC &amp; conglomerate-grade compliance</li>
+          <li>Dedicated onboarding team</li>
+          <li>SLA-backed support</li>
+        </ul>
+        <div class="tier-cta">
+          <a href="https://wa.me/60139844412?text=Hi%2C%20saya%20berminat%20dengan%20Miccy%20Command" class="btn-primary" target="_blank" rel="noopener" style="width:100%;justify-content:center;">
+            Discuss Command →
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LOCAL LLM ═══ -->
+<section class="section llm-bg" id="local-llm" aria-labelledby="llm-heading">
+  <div class="container">
+    <div class="section-tag">On-Premise AI</div>
+    <h2 class="section-title" id="llm-heading">
+      On-Premise LLM<br><em>Deployment Malaysia.</em>
+    </h2>
+    <p class="section-sub">
+      For enterprises where data cannot leave the building. We deploy and manage the latest open-source AI models on your own infrastructure — PDPA compliant AI, zero cloud dependency.
+    </p>
+
+    <div class="llm-layout">
+      <div>
+        <div class="model-cards" aria-label="Available models">
+          <article class="model-card">
+            <span class="model-icon" aria-hidden="true">🟠</span>
+            <div>
+              <div class="model-name">Qwen3.5 — Alibaba</div>
+              <div class="model-desc">235B–397B params. Multilingual including Bahasa Malaysia and Chinese. Apache 2.0 — free commercial use. Best price-to-performance ratio for private LLM deployment in Malaysian SMEs.</div>
+              <span class="model-tag">Best for SMEs</span>
+            </div>
+          </article>
+          <article class="model-card">
+            <span class="model-icon" aria-hidden="true">🟢</span>
+            <div>
+              <div class="model-name">Nemotron-Cascade 2 — NVIDIA</div>
+              <div class="model-desc">30B MoE, only 3B active parameters. Runs on modest hardware. Gold Medal-level reasoning (IMO 2025). Ideal for agentic and compliance-heavy enterprise deployments.</div>
+              <span class="model-tag">Best for enterprise agents</span>
+            </div>
+          </article>
+          <article class="model-card">
+            <span class="model-icon" aria-hidden="true">🔵</span>
+            <div>
+              <div class="model-name">GLM-5.1 — Z.ai (Zhipu AI)</div>
+              <div class="model-desc">Released March 2026. Scores 45.3 on coding benchmarks — 94% of Claude Opus performance. Best-in-class open-source for agentic engineering tasks. Strong BM, Chinese and English.</div>
+              <span class="model-tag">Best for agentic workflows</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="llm-why">
+          <h4>Why on-premise AI Malaysia?</h4>
+          <div class="why-item"><span class="why-ico" aria-hidden="true">🛡️</span>Zero data sent externally — full PDPA compliant AI from day one</div>
+          <div class="why-item"><span class="why-ico" aria-hidden="true">🔒</span>Required for BFSI, healthcare, and government-adjacent organisations</div>
+          <div class="why-item"><span class="why-ico" aria-hidden="true">💰</span>No per-token cost after setup — flat monthly infrastructure</div>
+          <div class="why-item"><span class="why-ico" aria-hidden="true">⚙️</span>Fine-tuned on your company data, terminology and processes</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="pkg-cards" aria-label="Deployment packages">
+          <article class="pkg-card">
+            <div class="pkg-tier">SME</div>
+            <div class="pkg-name">Starter On-Prem</div>
+            <div class="pkg-price">RM 15,000 – 30,000</div>
+            <div class="pkg-desc">Single server deployment. 1 model (Qwen3.5 or Nemotron-Cascade 2). Up to 10 concurrent users. 3-month support included.</div>
+          </article>
+          <article class="pkg-card">
+            <div class="pkg-tier">Enterprise</div>
+            <div class="pkg-name">Full Stack Deployment</div>
+            <div class="pkg-price">RM 50,000 – 120,000</div>
+            <div class="pkg-desc">Multi-model setup. RAG pipeline on your documents. Custom agent workflows. SSO integration. SLA-backed support.</div>
+          </article>
+          <article class="pkg-card">
+            <div class="pkg-tier">Gov / BFSI</div>
+            <div class="pkg-name">Compliance-Grade</div>
+            <div class="pkg-price">RM 100,000+</div>
+            <div class="pkg-desc">Air-gapped options available. Full audit logs. Role-based access control. Penetration test report. Regulatory documentation included.</div>
+          </article>
+          <a href="https://wa.me/60139844412?text=Hi%2C%20saya%20berminat%20dengan%20on-premise%20LLM%20deployment" class="btn-primary" target="_blank" rel="noopener" style="justify-content:center;width:100%;">
+            Discuss your requirements →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section class="section" id="services" aria-labelledby="services-heading">
+  <div class="container">
+    <div class="section-tag">Services</div>
+    <h2 class="section-title" id="services-heading">
+      Beyond Miccy —<br><em>We transform.</em>
+    </h2>
+    <p class="section-sub">Whether you want to deploy a single AI agent or rebuild your entire company around AI, we handle both.</p>
+
+    <div class="services-grid">
+      <article class="svc-card">
+        <div class="svc-icon" aria-hidden="true">⚡</div>
+        <h3>Custom AI Agents Malaysia</h3>
+        <p>Bespoke AI agents built for your specific business workflows — customer service, procurement, HR, compliance review, research. Integrated with your existing systems and delivered in weeks, not months.</p>
+        <div class="svc-from">From <strong>RM 8,000</strong> setup</div>
+      </article>
+      <article class="svc-card">
+        <div class="svc-icon" aria-hidden="true">🏢</div>
+        <h3>AI Company Transformation</h3>
+        <p>End-to-end AI transformation. We audit your operations, identify every function that can be automated, and deploy a full AI-run stack across your organisation — just like we did for ourselves.</p>
+        <div class="svc-from">Custom pricing — <strong>Let's talk</strong></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WE RUN ON AI ═══ -->
+<section class="section" id="proof" aria-labelledby="proof-heading">
+  <div class="container">
+    <div class="section-tag">We are the proof</div>
+    <h2 class="section-title" id="proof-heading">
+      Every function.<br><em>Automated.</em>
+    </h2>
+    <p class="section-sub">We're not selling AI theory. Arus Digital is 100% AI-operated. This is our actual internal stack — we are our own case study.</p>
+
+    <div class="proof-grid">
+      <article class="proof-card">
+        <div class="proof-fn">Intelligence</div>
+        <div class="proof-tool">Miccy</div>
+        <div class="proof-desc">Daily brief on business metrics, market signals, and anomalies — 7am every morning</div>
+      </article>
+      <article class="proof-card">
+        <div class="proof-fn">Orchestration</div>
+        <div class="proof-tool">Paperclip</div>
+        <div class="proof-desc">AI org chart — CEO, CTO, ops, marketing agents working toward one mission 24/7</div>
+      </article>
+      <article class="proof-card">
+        <div class="proof-fn">Development</div>
+        <div class="proof-tool">Claude Code</div>
+        <div class="proof-desc">All product engineering delegated to AI coding agents with human review gates</div>
+      </article>
+      <article class="proof-card">
+        <div class="proof-fn">Research</div>
+        <div class="proof-tool">AI Agents</div>
+        <div class="proof-desc">Competitor monitoring, market research, and content — all handled autonomously</div>
+      </article>
+      <article class="proof-card">
+        <div class="proof-fn">Infrastructure</div>
+        <div class="proof-tool">OpenClaw</div>
+        <div class="proof-desc">Persistent AI assistant managing servers, deployments, and system health 24/7</div>
+      </article>
+      <article class="proof-card">
+        <div class="proof-fn">Strategy</div>
+        <div class="proof-tool">You + AI</div>
+        <div class="proof-desc">Human direction on what matters. AI executes everything else.</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="section cta-wrap" id="contact" aria-labelledby="cta-heading">
+  <div class="container">
+    <div class="cta-box">
+      <div class="section-tag" style="justify-content:center;">Get started</div>
+      <h2 id="cta-heading">
+        Ready to run<br><em>on AI?</em>
+      </h2>
+      <p>Whether you want Miccy, a local LLM deployment, or a full AI transformation — let's talk. We reply same day.</p>
+      <div class="cta-btns">
+        <a href="https://wa.me/60139844412?text=Hi%2C%20saya%20berminat%20dengan%20Miccy" class="btn-primary" target="_blank" rel="noopener">
+          💬 WhatsApp us now
+        </a>
+        <a href="/cdn-cgi/l/email-protection#1a727f7676755a7b686f697e737d736e7b7634797577" class="btn-secondary">
+          ✉️ <span class="__cf_email__" data-cfemail="38505d54545778594a4d4b5c515f514c5954165b5755">[email&#160;protected]</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-brand">Arus Digital</span>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="https://miccy.arusdigital.com" target="_blank" rel="noopener">Miccy</a>
+      <a href="#local-llm">Local LLM</a>
+      <a href="#services">Services</a>
+      <a href="/about.html">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <span class="footer-copy">© 2026 Arus Digital Sdn Bhd · Kuala Lumpur · PDPA Compliant</span>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>
