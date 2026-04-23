@@ -147,11 +147,18 @@ body > nav {
 @media (max-width: 640px) { .reasons-grid { grid-template-columns: 1fr; } }
 
 /* ── Team ── */
-.team-card { display: flex; gap: 2rem; align-items: flex-start; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 2rem; max-width: 520px; }
-.team-avatar { width: 72px; height: 72px; border-radius: 50%; background: var(--raised); border: 2px solid var(--gold-d); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 1.6rem; color: var(--gold); }
-.team-name { font-family: var(--serif); font-size: 1.15rem; margin-bottom: .25rem; }
-.team-role { font-size: .8rem; color: var(--gold); font-weight: 600; margin-bottom: .75rem; }
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.team-card { display: flex; flex-direction: column; gap: 1.25rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 2rem; transition: border-color .2s; }
+.team-card:hover { border-color: var(--gold-d); }
+.team-header { display: flex; align-items: center; gap: 1rem; }
+.team-avatar { width: 56px; height: 56px; border-radius: 50%; background: var(--raised); border: 2px solid var(--gold-d); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 1.4rem; color: var(--gold); }
+.team-name { font-family: var(--serif); font-size: 1.05rem; margin-bottom: .2rem; }
+.team-role { font-size: .76rem; color: var(--gold); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
 .team-bio { font-size: .88rem; color: var(--muted); line-height: 1.65; }
+.team-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: auto; padding-top: .75rem; }
+.team-tag { font-size: .7rem; font-weight: 600; color: var(--muted); background: var(--raised); border: 1px solid var(--border); border-radius: 4px; padding: .2rem .55rem; }
+@media (max-width: 900px) { .team-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .team-grid { grid-template-columns: 1fr; } }
 
 /* ── CTA ── */
 .cta-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: clamp(2.5rem, 5vw, 4rem); text-align: center; }
@@ -349,13 +356,59 @@ footer { border-top: 1px solid var(--border); padding: 2.5rem 0; }
   <div class="container">
     <div class="section-tag">Team</div>
     <h2 class="section-title" style="margin-bottom: 2rem;">The humans<br>behind the AI.</h2>
-    <div class="team-card">
-      <div class="team-avatar">A</div>
-      <div>
-        <div class="team-name">Amir Ariff</div>
-        <div class="team-role">Founder & CEO · Arus Digital</div>
-        <div class="team-bio">Based in Kuala Lumpur. Building Malaysia's first AI-operated company and shipping Miccy — the intelligence officer he wished he had as a CEO. Reaches him fastest on WhatsApp.</div>
+    <div class="team-grid">
+
+      <!-- Amir Ariff -->
+      <div class="team-card">
+        <div class="team-header">
+          <div class="team-avatar">A</div>
+          <div>
+            <div class="team-name">Amir Ariff</div>
+            <div class="team-role">Founder & CEO</div>
+          </div>
+        </div>
+        <div class="team-bio">Based in Kuala Lumpur. Built Malaysia's first AI-operated company from the ground up — Miccy is the intelligence officer he wished he had as a CEO. Ships product, writes the playbook, and reaches you fastest on WhatsApp.</div>
+        <div class="team-tags">
+          <span class="team-tag">AI Strategy</span>
+          <span class="team-tag">Product</span>
+          <span class="team-tag">Growth</span>
+        </div>
       </div>
+
+      <!-- Mohd Hazim -->
+      <div class="team-card">
+        <div class="team-header">
+          <div class="team-avatar">H</div>
+          <div>
+            <div class="team-name">Mohd Hazim</div>
+            <div class="team-role">Co-Founder & Director</div>
+          </div>
+        </div>
+        <div class="team-bio">Seasoned Managing Director with a strong enterprise and operational track record. Leads Arus Digital's business development, corporate partnerships, and expansion into Malaysian GLCs and conglomerates.</div>
+        <div class="team-tags">
+          <span class="team-tag">Business Dev</span>
+          <span class="team-tag">Enterprise</span>
+          <span class="team-tag">Operations</span>
+        </div>
+      </div>
+
+      <!-- Amirul Farhan -->
+      <div class="team-card">
+        <div class="team-header">
+          <div class="team-avatar">F</div>
+          <div>
+            <div class="team-name">Amirul Farhan</div>
+            <div class="team-role">Head of Digital & Growth</div>
+          </div>
+        </div>
+        <div class="team-bio">8 years driving digital strategy at scale — grew Suria FM to 566.7M content views and 4M+ social followers. At Arus Digital, leads AI-powered marketing, campaign execution, and client growth programmes.</div>
+        <div class="team-tags">
+          <span class="team-tag">Digital Marketing</span>
+          <span class="team-tag">AI Content</span>
+          <span class="team-tag">Analytics</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
