@@ -415,6 +415,14 @@ body > nav {
 .trust-card p { color: var(--muted); font-size: .86rem; line-height: 1.6; margin: 0; }
 .trust-footer { margin-top: 2rem; padding: 1rem 1.5rem; background: var(--gold-ff); border: 1px solid var(--border); border-radius: var(--r); font-size: .82rem; font-weight: 600; color: var(--gold); display: flex; align-items: center; gap: .5rem; }
 
+/* ── Agency bridge CTA ── */
+.agency-bridge { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+.agency-bridge-inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+.agency-bridge-text { margin: 0; font-size: 1rem; color: var(--text); line-height: 1.6; max-width: 540px; }
+.agency-bridge-btn { white-space: nowrap; flex-shrink: 0; }
+.agency-divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0 0; }
+@media (max-width: 640px) { .agency-bridge-inner { flex-direction: column; align-items: flex-start; } .agency-bridge-btn { width: 100%; text-align: center; } }
+
 /* ── Proof section ── */
 .proof-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-top: 3rem; }
 @media (max-width: 720px) { .proof-grid { grid-template-columns: 1fr 1fr; } }
@@ -496,7 +504,7 @@ section[id] { scroll-margin-top: 80px; }
     </h1>
 
     <p class="hero-sub">
-      Run Google Ads, Meta Ads and SEO campaigns, build corporate websites and ecommerce stores, develop web and mobile apps, and deploy WhatsApp automation and AI tools — all from a Kuala Lumpur team that works in BM and English.
+      We help Malaysian SMEs launch campaigns, ship web products, and automate daily work — with a KL team that works in BM, English and WhatsApp.
     </p>
 
     <div class="hero-actions">
@@ -514,7 +522,7 @@ section[id] { scroll-margin-top: 80px; }
         <div class="stat-label">We work in BM and English</div>
       </div>
       <div role="listitem">
-        <div class="stat-num">WA</div>
+        <div class="stat-num">WhatsApp</div>
         <div class="stat-label">WhatsApp-first team</div>
       </div>
       <div role="listitem">
@@ -666,11 +674,25 @@ section[id] { scroll-margin-top: 80px; }
   </div>
 </section>
 
+<!-- ═══ AGENCY CTA BRIDGE ═══ -->
+<section class="section agency-bridge" aria-label="Agency services enquiry">
+  <div class="container">
+    <div class="agency-bridge-inner">
+      <p class="agency-bridge-text">Looking for marketing, web or app services? Our agency work is project-based — get a custom quote.</p>
+      <a href="https://wa.me/60139844412?text=Hi%20Arus%20Digital%2C%20I%27d%20like%20a%20proposal%20for%20agency%20services"
+         class="btn-primary agency-bridge-btn"
+         target="_blank" rel="noopener noreferrer"
+         aria-label="Get a proposal via WhatsApp">Get a proposal</a>
+    </div>
+    <hr class="agency-divider" aria-hidden="true">
+  </div>
+</section>
+
 <!-- ═══ WE RUN ON AI ═══ -->
 <section class="section" id="miccy" aria-labelledby="miccy-flagship-heading">
   <div class="container">
     <div class="flagship-intro">
-      <div class="section-tag">Our flagship product</div>
+      <div class="section-tag">Our flagship AI product</div>
       <h2 class="section-title" id="miccy-flagship-heading" style="margin-bottom:1rem;">
         Miccy. <em>AI Intelligence Officer</em><br>for Malaysian CEOs.
       </h2>
@@ -903,15 +925,15 @@ section[id] { scroll-margin-top: 80px; }
             <span class="model-icon" aria-hidden="true">🟠</span>
             <div>
               <div class="model-name">Qwen3.5 — Alibaba</div>
-              <div class="model-desc">235B–397B params. Multilingual including Bahasa Malaysia and Chinese. Apache 2.0 — free commercial use. Best price-to-performance ratio for private LLM deployment in Malaysian SMEs.</div>
-              <span class="model-tag">Best for SMEs</span>
+              <div class="model-desc">Multilingual BM/Chinese/English support out of the box. Apache 2.0 — free commercial use. Best price-to-performance ratio for private LLM deployment in Malaysian SMEs. <span style="font-size:0.82em;opacity:0.65;">235B–397B params.</span></div>
+              <span class="model-tag">Best for Malaysian SMEs</span>
             </div>
           </article>
           <article class="model-card">
             <span class="model-icon" aria-hidden="true">🟢</span>
             <div>
               <div class="model-name">Nemotron-Cascade 2 — NVIDIA</div>
-              <div class="model-desc">30B MoE, only 3B active parameters. Runs on modest hardware. Gold Medal-level reasoning (IMO 2025). Ideal for agentic and compliance-heavy enterprise deployments.</div>
+              <div class="model-desc">Low-latency, high-throughput agentic workflows. Ideal for compliance-heavy enterprise deployments. Runs efficiently on modest hardware. <span style="font-size:0.82em;opacity:0.65;">30B MoE, 3B active params.</span></div>
               <span class="model-tag">Best for enterprise agents</span>
             </div>
           </article>
@@ -919,11 +941,13 @@ section[id] { scroll-margin-top: 80px; }
             <span class="model-icon" aria-hidden="true">🔵</span>
             <div>
               <div class="model-name">GLM-5.1 — Z.ai (Zhipu AI)</div>
-              <div class="model-desc">Released March 2026. Scores 45.3 on coding benchmarks — 94% of Claude Opus performance. Best-in-class open-source for agentic engineering tasks. Strong BM, Chinese and English.</div>
+              <div class="model-desc">Strong coding and reasoning for custom automation. Best-in-class open-source for agentic engineering tasks. Multilingual BM, Chinese and English.</div>
               <span class="model-tag">Best for agentic workflows</span>
             </div>
           </article>
         </div>
+
+        <p style="font-size:0.88em;opacity:0.7;margin-top:0.75rem;font-style:italic;">We recommend the right model for your data, language, and hardware requirements.</p>
 
         <div class="llm-why">
           <h4>Why on-premise AI Malaysia?</h4>
