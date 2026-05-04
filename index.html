@@ -416,22 +416,6 @@ body > nav {
 .trust-footer { margin-top: 2rem; padding: 1rem 1.5rem; background: var(--gold-ff); border: 1px solid var(--border); border-radius: var(--r); font-size: .82rem; font-weight: 600; color: var(--gold); display: flex; align-items: center; gap: .5rem; }
 
 /* ── Agency bridge CTA ── */
-/* ── How We Work section ── */
-.hww-steps { display: flex; gap: 1.25rem; margin-top: 3rem; overflow-x: auto; padding-bottom: .5rem; -webkit-overflow-scrolling: touch; }
-.hww-step {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--r-lg); padding: 1.75rem 1.5rem;
-  flex: 0 0 200px; min-width: 0; display: flex; flex-direction: column; gap: .75rem;
-  transition: border-color .2s;
-}
-.hww-step:hover { border-color: var(--gold-d); }
-.hww-num { font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
-.hww-step h3 { font-weight: 700; font-size: 1rem; margin: 0; }
-.hww-step p { color: var(--muted); font-size: .86rem; line-height: 1.6; margin: 0; flex-grow: 1; }
-.hww-cta { margin-top: 3rem; text-align: center; }
-@media (max-width: 640px) { .hww-step { flex: 0 0 180px; } }
-
-
 .agency-bridge { padding-top: 2.5rem; padding-bottom: 2.5rem; }
 .agency-bridge-inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
 .agency-bridge-text { margin: 0; font-size: 1rem; color: var(--text); line-height: 1.6; max-width: 540px; }
@@ -444,11 +428,108 @@ body > nav {
 @media (max-width: 720px) { .proof-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 440px) { .proof-grid { grid-template-columns: 1fr; } }
 .proof-card {
-  background: var(--surface); border:
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 1.5rem; text-align: center;
+}
+.proof-fn { font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: .4rem; }
+.proof-tool { font-weight: 700; font-size: .92rem; }
+.proof-desc { font-size: .78rem; color: var(--muted); margin-top: .35rem; line-height: 1.55; }
 
-... [OUTPUT TRUNCATED - 2866 chars omitted out of 52866 total] ...
+/* ── CTA ── */
+.cta-wrap { text-align: center; }
+.cta-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: clamp(3rem, 6vw, 5rem) clamp(2rem, 5vw, 4rem);
+  max-width: 660px; margin: 0 auto; position: relative; overflow: hidden;
+}
+.cta-box::before {
+  content: ''; position: absolute; bottom: -50%; left: 50%; transform: translateX(-50%);
+  width: 500px; height: 400px;
+  background: radial-gradient(ellipse, rgba(201,162,39,.055) 0%, transparent 68%);
+  pointer-events: none;
+}
+.cta-box h2 { font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: .75rem; }
+.cta-box p { color: var(--muted); font-weight: 300; margin-bottom: 2rem; }
+.cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
-ia-labelledby="hero-heading">
+/* ── Footer ── */
+footer { border-top: 1px solid var(--border); padding: 2.5rem 0; }
+.footer-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+}
+.footer-brand { font-family: var(--serif); font-size: .98rem; }
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a { font-size: .8rem; color: var(--muted); transition: color .2s; }
+.footer-links a:hover { color: var(--white); }
+.footer-copy { font-size: .76rem; color: var(--faint); }
+
+/* anchor offset fix for fixed nav */
+section[id] { scroll-margin-top: 80px; }
+
+/* ── Proof / Results ── */
+.results-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+@media (max-width: 720px) { .results-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 440px) { .results-grid { grid-template-columns: 1fr; } }
+.results-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 1.75rem 1.5rem;
+  display: flex; flex-direction: column; gap: .5rem;
+  transition: border-color .2s;
+}
+.results-card:hover { border-color: var(--gold-d); }
+.results-cat {
+  font-size: .65rem; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: .25rem;
+}
+.results-metric {
+  font-family: var(--serif); font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+  color: var(--white); line-height: 1.2;
+}
+.results-metric em { color: var(--gold); font-style: italic; }
+.results-desc { font-size: .82rem; color: var(--muted); line-height: 1.6; margin: 0; }
+.results-client { font-size: .75rem; font-weight: 600; color: var(--faint); margin-top: auto; padding-top: .75rem; border-top: 1px solid var(--border); }
+
+/* ── How We Work ── */
+.hww-steps { display: flex; gap: 1.25rem; margin-top: 3rem; overflow-x: auto; padding-bottom: .5rem; -webkit-overflow-scrolling: touch; }
+.hww-step {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--r);
+  padding: 1.5rem 1.25rem; flex: 0 0 200px; display: flex; flex-direction: column; gap: .75rem;
+  transition: border-color .2s;
+}
+.hww-step:hover { border-color: var(--gold-d); }
+.hww-num { font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+.hww-step h3 { font-weight: 700; font-size: 1rem; margin: 0; }
+.hww-step p { color: var(--muted); font-size: .86rem; line-height: 1.6; margin: 0; flex-grow: 1; }
+.hww-cta { margin-top: 2.5rem; text-align: center; }
+@media (max-width: 640px) { .hww-step { flex: 0 0 180px; } }
+
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="Arus Digital homepage">
+      <span class="nav-dot" aria-hidden="true"></span>
+      Arus Digital
+    </a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#miccy">Miccy</a>
+      <a href="#local-llm">Local LLM</a>
+      <a href="/about.html">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="https://wa.me/60139844412?text=Hi%2C%20I%27d%20like%20to%20get%20a%20proposal" class="nav-cta" target="_blank" rel="noopener">
+      Get a proposal
+    </a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" aria-labelledby="hero-heading">
   <div class="container">
     <div class="label" role="note">
       <span aria-hidden="true">●</span>
@@ -631,24 +712,10 @@ ia-labelledby="hero-heading">
   </div>
 </section>
 
-<!-- ═══ AGENCY CTA BRIDGE ═══ -->
-<section class="section agency-bridge" aria-label="Agency services enquiry">
-  <div class="container">
-    <div class="agency-bridge-inner">
-      <p class="agency-bridge-text">Looking for marketing, web or app services? Our agency work is project-based — get a custom quote.</p>
-      <a href="https://wa.me/60139844412?text=Hi%20Arus%20Digital%2C%20I%27d%20like%20a%20proposal%20for%20agency%20services"
-         class="btn-primary agency-bridge-btn"
-         target="_blank" rel="noopener noreferrer"
-         aria-label="Get a proposal via WhatsApp">Get a proposal</a>
-    </div>
-    <hr class="agency-divider" aria-hidden="true">
-  </div>
-</section>
-
 <!-- ═══ HOW WE WORK ═══ -->
 <section class="section" id="how-we-work" aria-labelledby="hww-heading">
   <div class="container">
-    <div class="section-tag">How We Work</div>
+    <div class="section-tag">HOW WE WORK</div>
     <h2 class="section-title" id="hww-heading">Simple process. <em>Real results.</em></h2>
 
     <div class="hww-steps" role="list" aria-label="Our 5-step process">
@@ -697,6 +764,20 @@ ia-labelledby="hero-heading">
   </div>
 </section>
 
+<!-- ═══ AGENCY CTA BRIDGE ═══ -->
+<section class="section agency-bridge" aria-label="Agency services enquiry">
+  <div class="container">
+    <div class="agency-bridge-inner">
+      <p class="agency-bridge-text">Looking for marketing, web or app services? Our agency work is project-based — get a custom quote.</p>
+      <a href="https://wa.me/60139844412?text=Hi%20Arus%20Digital%2C%20I%27d%20like%20a%20proposal%20for%20agency%20services"
+         class="btn-primary agency-bridge-btn"
+         target="_blank" rel="noopener noreferrer"
+         aria-label="Get a proposal via WhatsApp">Get a proposal</a>
+    </div>
+    <hr class="agency-divider" aria-hidden="true">
+  </div>
+</section>
+
 <!-- ═══ PROOF / RESULTS ═══ -->
 <section class="section" id="proof-results" aria-labelledby="proof-results-heading">
   <div class="container">
@@ -707,24 +788,26 @@ ia-labelledby="hero-heading">
 
     <div class="results-grid">
 
-      <article class="results-card">
+      <div class="results-card">
         <div class="results-cat">AI Automation</div>
-        <div class="results-metric"><em>45 min → 3 min</em></div>
-        <p class="results-desc">Ad audit time slashed from 45 minutes to under 3 minutes using Miccy AI automation — same accuracy, a fraction of the effort.</p>
+        <div class="results-metric"><em>45 min &rarr; 3 min</em></div>
+        <div class="results-desc">Qurban booking reconciliation automated end-to-end. Staff now handle 15&times; more orders in the same shift.</div>
         <div class="results-client">EzQurban Sdn Bhd</div>
-      </article>
+      </div>
 
-      <article class="results-card">
+      <div class="results-card">
         <div class="results-cat">Platform Scale</div>
         <div class="results-metric"><em>90+</em> capabilities</div>
-        <p class="results-desc">90+ AI-powered capabilities deployed across client accounts — from daily intelligence briefings to automated campaign reporting.</p>
-      </article>
+        <div class="results-desc">Miccy Intelligence Platform — integrations, automations, and intelligence modules built and maintained in-house.</div>
+        <div class="results-client">Arus Digital</div>
+      </div>
 
-      <article class="results-card">
+      <div class="results-card">
         <div class="results-cat">Service Quality</div>
         <div class="results-metric">Same-day <em>responses</em></div>
-        <p class="results-desc">Same-day WhatsApp responses. KL timezone. Fluent in BM and English. Your team can reach us fast, and we'll actually reply.</p>
-      </article>
+        <div class="results-desc">Same-day WhatsApp responses. KL timezone. Fluent in BM and English. Your team can reach us fast, and we'll actually reply.</div>
+        <div class="results-client">All Clients</div>
+      </div>
 
     </div>
   </div>
@@ -1110,6 +1193,6 @@ ia-labelledby="hero-heading">
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</body>
 <!-- deploy-v2 -->
 </html>
