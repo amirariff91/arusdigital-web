@@ -416,6 +416,22 @@ body > nav {
 .trust-footer { margin-top: 2rem; padding: 1rem 1.5rem; background: var(--gold-ff); border: 1px solid var(--border); border-radius: var(--r); font-size: .82rem; font-weight: 600; color: var(--gold); display: flex; align-items: center; gap: .5rem; }
 
 /* ── Agency bridge CTA ── */
+/* ── How We Work section ── */
+.hww-steps { display: flex; gap: 1.25rem; margin-top: 3rem; overflow-x: auto; padding-bottom: .5rem; -webkit-overflow-scrolling: touch; }
+.hww-step {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 1.75rem 1.5rem;
+  flex: 0 0 200px; min-width: 0; display: flex; flex-direction: column; gap: .75rem;
+  transition: border-color .2s;
+}
+.hww-step:hover { border-color: var(--gold-d); }
+.hww-num { font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+.hww-step h3 { font-weight: 700; font-size: 1rem; margin: 0; }
+.hww-step p { color: var(--muted); font-size: .86rem; line-height: 1.6; margin: 0; flex-grow: 1; }
+.hww-cta { margin-top: 3rem; text-align: center; }
+@media (max-width: 640px) { .hww-step { flex: 0 0 180px; } }
+
+
 .agency-bridge { padding-top: 2.5rem; padding-bottom: 2.5rem; }
 .agency-bridge-inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
 .agency-bridge-text { margin: 0; font-size: 1rem; color: var(--text); line-height: 1.6; max-width: 540px; }
@@ -445,26 +461,11 @@ body > nav {
 .cta-box::before {
   content: ''; position: absolute; bottom: -50%; left: 50%; transform: translateX(-50%);
   width: 500px; height: 400px;
-  background: radial-gradient(ellipse, rgba(201,162,39,.055) 0%, transparent 68%);
-  pointer-events: none;
-}
-.cta-box h2 { font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: .75rem; }
-.cta-box p { color: var(--muted); font-weight: 300; margin-bottom: 2rem; }
-.cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  background: radial-gradient(ellipse, rgba(201,162,39,
 
-/* ── Footer ── */
-footer { border-top: 1px solid var(--border); padding: 2.5rem 0; }
-.footer-inner {
-  max-width: 1100px; margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 2.5rem);
-  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
-}
-.footer-brand { font-family: var(--serif); font-size: .98rem; }
-.footer-links { display: flex; gap: 1.5rem; }
-.footer-links a { font-size: .8rem; color: var(--muted); transition: color .2s; }
-.footer-links a:hover { color: var(--white); }
-.footer-copy { font-size: .76rem; color: var(--faint); }
+... [OUTPUT TRUNCATED - 902 chars omitted out of 50902 total] ...
 
-/* anchor offset fix for fixed nav */
+ offset fix for fixed nav */
 section[id] { scroll-margin-top: 80px; }
 
 /* ── Proof / Results ── */
@@ -708,6 +709,91 @@ section[id] { scroll-margin-top: 80px; }
          aria-label="Get a proposal via WhatsApp">Get a proposal</a>
     </div>
     <hr class="agency-divider" aria-hidden="true">
+  </div>
+</section>
+
+<!-- ═══ PROOF / RESULTS ═══ -->
+<section class="section" id="proof-results" aria-labelledby="proof-results-heading">
+  <div class="container">
+    <div class="section-tag">Proven Results</div>
+    <h2 class="section-title" id="proof-results-heading">
+      Real work. <em>Measurable outcomes.</em>
+    </h2>
+
+    <div class="results-grid">
+
+      <article class="results-card">
+        <div class="results-cat">AI Automation</div>
+        <div class="results-metric"><em>45 min → 3 min</em></div>
+        <p class="results-desc">Ad audit time slashed from 45 minutes to under 3 minutes using Miccy AI automation — same accuracy, a fraction of the effort.</p>
+        <div class="results-client">EzQurban Sdn Bhd</div>
+      </article>
+
+      <article class="results-card">
+        <div class="results-cat">Platform Scale</div>
+        <div class="results-metric"><em>90+</em> capabilities</div>
+        <p class="results-desc">90+ AI-powered capabilities deployed across client accounts — from daily intelligence briefings to automated campaign reporting.</p>
+      </article>
+
+      <article class="results-card">
+        <div class="results-cat">Service Quality</div>
+        <div class="results-metric">Same-day <em>responses</em></div>
+        <p class="results-desc">Same-day WhatsApp responses. KL timezone. Fluent in BM and English. Your team can reach us fast, and we'll actually reply.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW WE WORK ═══ -->
+<section class="section" id="how-we-work" aria-labelledby="hww-heading">
+  <div class="container">
+    <div class="section-tag">How We Work</div>
+    <h2 class="section-title" id="hww-heading">Simple process. <em>Real results.</em></h2>
+
+    <div class="hww-steps" role="list" aria-label="Our 5-step process">
+
+      <article class="hww-step" role="listitem">
+        <div class="hww-num">Step 1 &mdash; Audit</div>
+        <h3>Audit</h3>
+        <p>We review your current marketing, website, systems and gaps.</p>
+      </article>
+
+      <article class="hww-step" role="listitem">
+        <div class="hww-num">Step 2 &mdash; Plan</div>
+        <h3>Plan</h3>
+        <p>We propose a focused scope: what to build, what to run, what to automate.</p>
+      </article>
+
+      <article class="hww-step" role="listitem">
+        <div class="hww-num">Step 3 &mdash; Build</div>
+        <h3>Build</h3>
+        <p>We execute &mdash; campaigns live, websites shipped, apps deployed, automations running.</p>
+      </article>
+
+      <article class="hww-step" role="listitem">
+        <div class="hww-num">Step 4 &mdash; Launch</div>
+        <h3>Launch</h3>
+        <p>We go live with you, test everything, and make sure it works.</p>
+      </article>
+
+      <article class="hww-step" role="listitem">
+        <div class="hww-num">Step 5 &mdash; Optimise</div>
+        <h3>Optimise</h3>
+        <p>We track, report, and improve. Monthly reviews in WhatsApp or email.</p>
+      </article>
+
+    </div>
+
+    <div class="hww-cta">
+      <a href="https://wa.me/60139844412?text=Hi%20Arus%20Digital%2C%20I%27d%20like%20a%20free%20audit"
+         class="btn-primary"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="Start with a free audit via WhatsApp">
+        Start with a free audit &mdash; WhatsApp us
+      </a>
+    </div>
   </div>
 </section>
 
@@ -1085,6 +1171,7 @@ section[id] { scroll-margin-top: 80px; }
       <a href="#services">Services</a>
       <a href="/about.html">About</a>
       <a href="#contact">Contact</a>
+      <a href="/privacy.html">Privacy</a>
     </nav>
     <span class="footer-copy">© 2026 Arus Digital Sdn Bhd · Kuala Lumpur · PDPA Compliant</span>
   </div>
