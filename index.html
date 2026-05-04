@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Miccy by Arus Digital — AI Intelligence Officer for Malaysian CEOs | arusdigital.com</title>
-<meta name="description" content="Miccy delivers daily AI intelligence briefs to Malaysian CEOs and decision makers. Financial alerts, competitor moves, anomalies — by 7am. From RM 2,990/mo.">
+<title>Arus Digital - Digital Marketing, Web, App and AI Agency Malaysia</title>
+<meta name="description" content="Arus Digital is a digital agency in Kuala Lumpur, Malaysia. We offer digital marketing, SEO, web design, app development, and AI automation services for Malaysian businesses.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://arusdigital.com">
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
 <!-- Open Graph -->
-<meta property="og:title" content="Miccy by Arus Digital — AI Intelligence Officer for Malaysian CEOs">
-<meta property="og:description" content="Miccy delivers daily AI intelligence briefs to Malaysian CEOs and decision makers. Financial alerts, competitor moves, anomalies — by 7am. From RM 2,990/mo.">
+<meta property="og:title" content="Arus Digital - Digital Marketing, Web, App and AI Agency Malaysia">
+<meta property="og:description" content="Arus Digital is a digital agency in Kuala Lumpur, Malaysia. Digital marketing, SEO, web design, app development, and AI automation for Malaysian businesses.">
 <meta property="og:url" content="https://arusdigital.com">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://arusdigital.com/og-image.png">
 <meta property="og:locale" content="en_MY">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Miccy by Arus Digital — AI Intelligence Officer for Malaysian CEOs">
-<meta name="twitter:description" content="Daily AI intelligence briefings for Malaysian CEOs. Financial alerts, competitor signals, anomaly detection — by 7am.">
+<meta name="twitter:title" content="Arus Digital - Digital Marketing, Web, App and AI Agency Malaysia">
+<meta name="twitter:description" content="Digital agency in Kuala Lumpur — digital marketing, SEO, web design, app development, and AI automation for Malaysian businesses.">
 
 <!-- Organization Schema -->
 <script type="application/ld+json">
@@ -28,7 +28,7 @@
   "name": "Arus Digital",
   "url": "https://arusdigital.com",
   "logo": "https://arusdigital.com/logo.png",
-  "description": "Malaysia's first 100% AI-operated company. Builders of Miccy — AI Intelligence Officer for Malaysian CEOs.",
+  "description": "Arus Digital is a full-service digital agency in Kuala Lumpur, Malaysia, specialising in digital marketing, SEO, web design, app development, and AI automation. Malaysia's first 100% AI-operated agency.",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Kuala Lumpur",
@@ -211,6 +211,48 @@ body > nav {
 .stat-num { font-family: var(--serif); font-size: 1.9rem; color: var(--gold); }
 .stat-label { font-size: .76rem; color: var(--muted); margin-top: .2rem; }
 
+/* ── Miccy flagship intro ── */
+.flagship-intro {
+  background: linear-gradient(160deg, rgba(201,162,39,.05) 0%, transparent 55%);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: clamp(2.5rem, 5vw, 3.5rem) clamp(2rem, 4vw, 3rem);
+  margin-top: 0;
+}
+.flagship-steps {
+  display: flex; gap: 0; margin: 2rem 0;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); overflow: hidden;
+}
+.flagship-step {
+  flex: 1; padding: 1.1rem 1.5rem;
+  display: flex; align-items: center; gap: .75rem;
+  font-size: .86rem; font-weight: 600;
+  border-right: 1px solid var(--border);
+}
+.flagship-step:last-child { border-right: none; }
+.flagship-step-num {
+  font-family: var(--serif); font-size: .75rem; color: var(--gold);
+  opacity: .6; flex-shrink: 0; min-width: 1.2rem;
+}
+.flagship-pricing-row {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem; margin-top: 2rem;
+  padding-top: 1.75rem; border-top: 1px solid var(--border);
+}
+.flagship-price-note {
+  font-size: .88rem; color: var(--muted); font-weight: 300;
+}
+.flagship-price-note strong {
+  font-family: var(--serif); font-size: 1.05rem; color: var(--white); font-weight: 400;
+}
+@media (max-width: 580px) {
+  .flagship-steps { flex-direction: column; }
+  .flagship-step { border-right: none; border-bottom: 1px solid var(--border); }
+  .flagship-step:last-child { border-bottom: none; }
+  .flagship-pricing-row { flex-direction: column; align-items: flex-start; }
+}
+
 /* ── How Miccy works ── */
 .how-grid {
   display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem;
@@ -341,14 +383,37 @@ body > nav {
 .svc-card {
   background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--r-lg); padding: 2rem;
+  display: flex; flex-direction: column; gap: 1rem;
   transition: border-color .2s;
 }
 .svc-card:hover { border-color: var(--gold-d); }
-.svc-icon { font-size: 1.7rem; margin-bottom: 1rem; }
-.svc-card h3 { font-weight: 700; font-size: 1rem; margin-bottom: .5rem; }
-.svc-card p { color: var(--muted); font-size: .86rem; line-height: 1.6; margin-bottom: 1rem; }
+.svc-icon { font-size: 1.7rem; }
+.svc-card h3 { font-weight: 700; font-size: 1.05rem; }
+.svc-card p { color: var(--muted); font-size: .86rem; line-height: 1.6; }
+.svc-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+.svc-tag {
+  font-size: .68rem; font-weight: 600; color: var(--gold);
+  background: var(--gold-ff); border: 1px solid var(--border);
+  border-radius: 4px; padding: .15rem .5rem;
+}
+.svc-cta { margin-top: auto; }
 .svc-from { font-size: .78rem; color: var(--faint); }
 .svc-from strong { color: var(--gold); }
+
+/* ── Trust section ── */
+.trust-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; margin-top: 3rem; }
+@media (max-width: 640px) { .trust-grid { grid-template-columns: 1fr; } }
+.trust-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 2rem;
+  display: flex; flex-direction: column; gap: .75rem;
+  transition: border-color .2s;
+}
+.trust-card:hover { border-color: var(--gold-d); }
+.trust-icon { font-size: 1.6rem; }
+.trust-card h3 { font-weight: 700; font-size: 1rem; }
+.trust-card p { color: var(--muted); font-size: .86rem; line-height: 1.6; margin: 0; }
+.trust-footer { margin-top: 2rem; padding: 1rem 1.5rem; background: var(--gold-ff); border: 1px solid var(--border); border-radius: var(--r); font-size: .82rem; font-weight: 600; color: var(--gold); display: flex; align-items: center; gap: .5rem; }
 
 /* ── Proof section ── */
 .proof-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-top: 3rem; }
@@ -390,6 +455,9 @@ footer { border-top: 1px solid var(--border); padding: 2.5rem 0; }
 .footer-links a { font-size: .8rem; color: var(--muted); transition: color .2s; }
 .footer-links a:hover { color: var(--white); }
 .footer-copy { font-size: .76rem; color: var(--faint); }
+
+/* anchor offset fix for fixed nav */
+section[id] { scroll-margin-top: 80px; }
 </style>
 </head>
 <body>
@@ -402,14 +470,14 @@ footer { border-top: 1px solid var(--border); padding: 2.5rem 0; }
       Arus Digital
     </a>
     <div class="nav-links">
+      <a href="#services">Services</a>
       <a href="#miccy">Miccy</a>
-      <a href="#pricing">Pricing</a>
       <a href="#local-llm">Local LLM</a>
       <a href="/about.html">About</a>
       <a href="#contact">Contact</a>
     </div>
-    <a href="https://wa.me/60139844412?text=Hi%2C%20saya%20berminat%20dengan%20Miccy" class="nav-cta" target="_blank" rel="noopener">
-      Get Miccy →
+    <a href="https://wa.me/60139844412?text=Hi%2C%20I%27d%20like%20to%20get%20a%20proposal" class="nav-cta" target="_blank" rel="noopener">
+      Get a proposal
     </a>
   </div>
 </nav>
@@ -419,35 +487,35 @@ footer { border-top: 1px solid var(--border); padding: 2.5rem 0; }
   <div class="container">
     <div class="label" role="note">
       <span aria-hidden="true">●</span>
-      Malaysia's first 100% AI-operated company
+      Based in Kuala Lumpur
     </div>
 
     <h1 id="hero-heading">
-      Malaysia's First<br>
-      100% <em>AI-Run</em> Company.
+      Digital marketing, websites, apps<br>
+      and <em>AI automation</em> for Malaysian businesses.
     </h1>
 
     <p class="hero-sub">
-      We built <strong>Miccy</strong> — an AI intelligence officer that delivers what every Malaysian CEO needs: the right information, before the window closes. Every morning. In your WhatsApp.
+      Run Google Ads, Meta Ads and SEO campaigns, build corporate websites and ecommerce stores, develop web and mobile apps, and deploy WhatsApp automation and AI tools — all from a Kuala Lumpur team that works in BM and English.
     </p>
 
     <div class="hero-actions">
-      <a href="#pricing" class="btn-primary">See Miccy plans →</a>
-      <a href="#miccy" class="btn-secondary">How it works</a>
+      <a href="https://wa.me/60139844412?text=Hi%2C%20I%27m%20interested%20in%20digital%20marketing%20%2F%20website%20%2F%20app%20development." class="btn-primary" target="_blank" rel="noopener">💬 WhatsApp us</a>
+      <a href="#services" class="btn-secondary">See our services</a>
     </div>
 
     <div class="hero-stats" role="list" aria-label="Company highlights">
       <div role="listitem">
-        <div class="stat-num">100%</div>
-        <div class="stat-label">AI-operated internally</div>
+        <div class="stat-num">KL</div>
+        <div class="stat-label">Based in Kuala Lumpur</div>
       </div>
       <div role="listitem">
-        <div class="stat-num">7am</div>
-        <div class="stat-label">Daily intelligence brief</div>
+        <div class="stat-num">BM+EN</div>
+        <div class="stat-label">We work in BM and English</div>
       </div>
       <div role="listitem">
-        <div class="stat-num">48h</div>
-        <div class="stat-label">Miccy setup time</div>
+        <div class="stat-num">WA</div>
+        <div class="stat-label">WhatsApp-first team</div>
       </div>
       <div role="listitem">
         <div class="stat-num">PDPA</div>
@@ -457,8 +525,47 @@ footer { border-top: 1px solid var(--border); padding: 2.5rem 0; }
   </div>
 </section>
 
+<!-- ═══ MICCY FLAGSHIP INTRO ═══ -->
+<section class="section" id="miccy" aria-labelledby="miccy-flagship-heading">
+  <div class="container">
+    <div class="flagship-intro">
+      <div class="section-tag">Our flagship product</div>
+      <h2 class="section-title" id="miccy-flagship-heading" style="margin-bottom:1rem;">
+        Miccy. <em>AI Intelligence Officer</em><br>for Malaysian CEOs.
+      </h2>
+      <p class="section-sub" style="max-width:620px;">
+        Built by Arus Digital for our own operations, now available to clients. Miccy delivers a daily 7am intelligence brief covering financials, competitors, and operational signals. Straight to WhatsApp.
+      </p>
+
+      <div class="flagship-steps" role="list" aria-label="How Miccy works in three steps">
+        <div class="flagship-step" role="listitem">
+          <span class="flagship-step-num" aria-hidden="true">01</span>
+          Connect your tools.
+        </div>
+        <div class="flagship-step" role="listitem">
+          <span class="flagship-step-num" aria-hidden="true">02</span>
+          Watch your business.
+        </div>
+        <div class="flagship-step" role="listitem">
+          <span class="flagship-step-num" aria-hidden="true">03</span>
+          Decide with data.
+        </div>
+      </div>
+
+      <div class="flagship-pricing-row">
+        <p class="flagship-price-note">
+          <strong>From RM 2,990</strong> per month. &nbsp;See full plans below.
+        </p>
+        <a href="#pricing" class="btn-primary">
+          Explore Miccy plans →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ WHAT IS MICCY ═══ -->
-<section class="section" id="miccy" aria-labelledby="miccy-heading">
+<section class="section" id="miccy-detail" aria-labelledby="miccy-heading">
   <div class="container">
     <div class="section-tag">The product</div>
     <h2 class="section-title" id="miccy-heading">
@@ -720,23 +827,138 @@ footer { border-top: 1px solid var(--border); padding: 2.5rem 0; }
   <div class="container">
     <div class="section-tag">Services</div>
     <h2 class="section-title" id="services-heading">
-      Beyond Miccy —<br><em>We transform.</em>
+      Digital services for<br><em>Malaysian businesses.</em>
     </h2>
-    <p class="section-sub">Whether you want to deploy a single AI agent or rebuild your entire company around AI, we handle both.</p>
+    <p class="section-sub">From ads to apps to AI — we build and run the digital engine behind your business.</p>
 
     <div class="services-grid">
-      <article class="svc-card">
-        <div class="svc-icon" aria-hidden="true">⚡</div>
-        <h3>Custom AI Agents Malaysia</h3>
-        <p>Bespoke AI agents built for your specific business workflows — customer service, procurement, HR, compliance review, research. Integrated with your existing systems and delivered in weeks, not months.</p>
-        <div class="svc-from">From <strong>RM 8,000</strong> setup</div>
+
+      <!-- Growth Marketing -->
+      <article class="svc-card" aria-labelledby="svc-growth-title">
+        <div class="svc-icon" aria-hidden="true">📈</div>
+        <h3 id="svc-growth-title">Growth Marketing</h3>
+        <p>We run paid and organic campaigns that bring the right customers to your door — tracked to the ringgit.</p>
+        <div class="svc-tags" aria-label="Growth marketing services">
+          <span class="svc-tag">Meta Ads</span>
+          <span class="svc-tag">Google Ads</span>
+          <span class="svc-tag">TikTok Ads</span>
+          <span class="svc-tag">SEO</span>
+          <span class="svc-tag">Local Search</span>
+          <span class="svc-tag">Google Business Profile</span>
+          <span class="svc-tag">Analytics</span>
+          <span class="svc-tag">Tracking</span>
+        </div>
+        <div class="svc-cta">
+          <a href="https://wa.me/60112523129?text=Hi%20Arus%20Digital%2C%20I%20need%20help%20with%20digital%20marketing" class="btn-primary" target="_blank" rel="noopener" style="width:100%;justify-content:center;">
+            Talk about growth →
+          </a>
+        </div>
       </article>
-      <article class="svc-card">
-        <div class="svc-icon" aria-hidden="true">🏢</div>
-        <h3>AI Company Transformation</h3>
-        <p>End-to-end AI transformation. We audit your operations, identify every function that can be automated, and deploy a full AI-run stack across your organisation — just like we did for ourselves.</p>
-        <div class="svc-from">Custom pricing — <strong>Let's talk</strong></div>
+
+      <!-- Web Design & Development -->
+      <article class="svc-card" aria-labelledby="svc-web-title">
+        <div class="svc-icon" aria-hidden="true">🌐</div>
+        <h3 id="svc-web-title">Web Design &amp; Development</h3>
+        <p>Professional websites and online stores built to convert — fast, mobile-first, and easy to manage.</p>
+        <div class="svc-tags" aria-label="Web development services">
+          <span class="svc-tag">Corporate websites</span>
+          <span class="svc-tag">Landing pages</span>
+          <span class="svc-tag">Shopify</span>
+          <span class="svc-tag">WooCommerce</span>
+          <span class="svc-tag">CMS</span>
+          <span class="svc-tag">Hosting</span>
+          <span class="svc-tag">Maintenance</span>
+        </div>
+        <div class="svc-cta">
+          <a href="https://wa.me/60112523129?text=Hi%20Arus%20Digital%2C%20I%20need%20a%20website" class="btn-primary" target="_blank" rel="noopener" style="width:100%;justify-content:center;">
+            Talk about web →
+          </a>
+        </div>
       </article>
+
+      <!-- App Development -->
+      <article class="svc-card" aria-labelledby="svc-app-title">
+        <div class="svc-icon" aria-hidden="true">📱</div>
+        <h3 id="svc-app-title">App Development</h3>
+        <p>Custom web and mobile applications — from internal tools and booking systems to customer-facing products.</p>
+        <div class="svc-tags" aria-label="App development services">
+          <span class="svc-tag">Web apps</span>
+          <span class="svc-tag">iOS &amp; Android</span>
+          <span class="svc-tag">Internal systems</span>
+          <span class="svc-tag">Booking systems</span>
+          <span class="svc-tag">Dashboards</span>
+          <span class="svc-tag">Integrations</span>
+        </div>
+        <div class="svc-cta">
+          <a href="https://wa.me/60112523129?text=Hi%20Arus%20Digital%2C%20I%20need%20an%20app%20built" class="btn-primary" target="_blank" rel="noopener" style="width:100%;justify-content:center;">
+            Talk about apps →
+          </a>
+        </div>
+      </article>
+
+      <!-- AI & Automation -->
+      <article class="svc-card" aria-labelledby="svc-ai-title">
+        <div class="svc-icon" aria-hidden="true">🤖</div>
+        <h3 id="svc-ai-title">AI &amp; Automation</h3>
+        <p>Automate repetitive work and unlock new capabilities with AI — from WhatsApp bots to on-premise LLM deployments.</p>
+        <div class="svc-tags" aria-label="AI and automation services">
+          <span class="svc-tag">WhatsApp automation</span>
+          <span class="svc-tag">AI chatbots</span>
+          <span class="svc-tag">Custom AI agents</span>
+          <span class="svc-tag">Report automation</span>
+          <span class="svc-tag">AI integration</span>
+          <span class="svc-tag">On-premise LLM</span>
+        </div>
+        <div class="svc-cta">
+          <a href="https://wa.me/60112523129?text=Hi%20Arus%20Digital%2C%20I%20need%20AI%20automation" class="btn-primary" target="_blank" rel="noopener" style="width:100%;justify-content:center;">
+            Talk about AI →
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHY ARUS DIGITAL ═══ -->
+<section class="section" id="why-arus-digital" aria-labelledby="trust-heading">
+  <div class="container">
+    <div class="section-tag">Why Arus Digital</div>
+    <h2 class="section-title" id="trust-heading">
+      Local expertise.<br><em>AI-powered delivery.</em>
+    </h2>
+
+    <div class="trust-grid">
+
+      <article class="trust-card">
+        <div class="trust-icon" aria-hidden="true">📍</div>
+        <h3>Based in Kuala Lumpur</h3>
+        <p>Serving Malaysian businesses in BM and English.</p>
+      </article>
+
+      <article class="trust-card">
+        <div class="trust-icon" aria-hidden="true">💬</div>
+        <h3>WhatsApp-first communication</h3>
+        <p>Fast responses, local timezone, real humans.</p>
+      </article>
+
+      <article class="trust-card">
+        <div class="trust-icon" aria-hidden="true">🤝</div>
+        <h3>Human + AI delivery</h3>
+        <p>Experienced team, AI-accelerated execution.</p>
+      </article>
+
+      <article class="trust-card">
+        <div class="trust-icon" aria-hidden="true">🚀</div>
+        <h3>Start with one project</h3>
+        <p>Website, campaign, automation or audit. No big commitments.</p>
+      </article>
+
+    </div>
+
+    <div class="trust-footer" role="note">
+      <span aria-hidden="true">🛡️</span>
+      PDPA compliant from day one.
     </div>
   </div>
 </section>
