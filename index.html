@@ -466,6 +466,29 @@ footer { border-top: 1px solid var(--border); padding: 2.5rem 0; }
 
 /* anchor offset fix for fixed nav */
 section[id] { scroll-margin-top: 80px; }
+
+/* ── Proof / Results ── */
+.results-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+@media (max-width: 720px) { .results-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 440px) { .results-grid { grid-template-columns: 1fr; } }
+.results-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 1.75rem 1.5rem;
+  display: flex; flex-direction: column; gap: .5rem;
+  transition: border-color .2s;
+}
+.results-card:hover { border-color: var(--gold-d); }
+.results-cat {
+  font-size: .65rem; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: .25rem;
+}
+.results-metric {
+  font-family: var(--serif); font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+  color: var(--white); line-height: 1.2;
+}
+.results-metric em { color: var(--gold); font-style: italic; }
+.results-desc { font-size: .82rem; color: var(--muted); line-height: 1.6; margin: 0; }
+.results-client { font-size: .75rem; font-weight: 600; color: var(--faint); margin-top: auto; padding-top: .75rem; border-top: 1px solid var(--border); }
 </style>
 </head>
 <body>
