@@ -1,0 +1,178 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '@layouts/Base.astro';
+import Reveal from '@components/Reveal.astro';
+import Icon from '@components/Icon.astro';
+import CtaSection from '@components/CtaSection.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('caseStudies');
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name: d.title,
+  about: d.sector,
+  description: d.summary,
+  author: { '@type': 'Organization', name: 'Arus Digital' },
+};
+---
+<Base
+  title={`${d.title} — Arus Digital`}
+  description={d.summary}
+  path={`/work/${entry.id}`}
+  noindex={d.draft}
+  jsonLd={jsonLd}
+>
+  <!-- Hero -->
+  <section class="cs-hero section">
+    <div class="container cs-hero__inner">
+      <a href="/work" class="cs-hero__back">
+        <Icon name="arrow" size={14} class="cs-hero__back-icon" />All work
+      </a>
+      <div class="cs-hero__meta">
+        <span class="cs-hero__client">{d.client}</span>
+        <span class="cs-hero__sector">{d.sector}</span>
+      </div>
+      <h1>{d.title}</h1>
+      <p class="lead cs-hero__sub">{d.summary}</p>
+    </div>
+  </section>
+
+  <!-- Metrics -->
+  {d.metrics.length > 0 && (
+    <section class="section section--alt">
+      <div class="container">
+        <Reveal class="cs-metrics">
+          {d.metrics.map((m) => (
+            <div class="cs-metric">
+              <span class="cs-metric__value">{m.value}</span>
+              <span class="cs-metric__label">{m.label}</span>
+            </div>
+          ))}
+        </Reveal>
+      </div>
+    </section>
+  )}
+
+  <!-- Body -->
+  <section class="section">
+    <div class="container container-narrow">
+      <Reveal class="cs-body">
+        <Content />
+      </Reveal>
+
+      {d.services.length > 0 && (
+        <Reveal class="cs-services" delay={60}>
+          <p class="eyebrow">Services used</p>
+          <div class="cs-services__tags">
+            {d.services.map((s) => <span class="cs-services__tag">{s}</span>)}
+          </div>
+        </Reveal>
+      )}
+    </div>
+  </section>
+
+  <CtaSection
+    title="Want results like this?"
+    waMessage={`Hi Arus Digital, I read the ${d.client} case study and would like a free audit.`}
+  />
+</Base>
+
+<style>
+  .cs-hero__inner { max-width: 50rem; }
+  .cs-hero__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: var(--t-sm);
+    color: var(--ink-3);
+    margin-bottom: 1.25rem;
+  }
+  .cs-hero__back:hover { color: var(--accent); }
+  .cs-hero__back-icon { transform: rotate(180deg); }
+  .cs-hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.9rem;
+    align-items: baseline;
+  }
+  .cs-hero__client {
+    font-size: var(--t-xs);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .cs-hero__sector { font-size: var(--t-xs); color: var(--ink-3); }
+  .cs-hero h1 { margin: 0.7rem 0 1rem; }
+  .cs-hero__sub { max-width: 40rem; }
+
+  .cs-metrics {
+    display: grid;
+    gap: 1.1rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 720px) {
+    .cs-metrics { grid-template-columns: repeat(4, 1fr); }
+  }
+  .cs-metric {
+    display: flex;
+    flex-direction: column;
+    padding: 1.4rem 1.3rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+  }
+  .cs-metric__value {
+    font-family: var(--font-display);
+    font-size: var(--t-2xl);
+    color: var(--ink);
+  }
+  .cs-metric__label { font-size: var(--t-sm); color: var(--ink-3); margin-top: 0.2rem; }
+
+  .cs-body { font-size: var(--t-base); color: var(--ink-2); }
+  .cs-body :global(p) { margin-top: 1rem; }
+  .cs-body :global(h2) { font-size: var(--t-xl); color: var(--ink); margin-top: 1.8rem; }
+  .cs-body :global(h3) { font-size: var(--t-lg); color: var(--ink); margin-top: 1.4rem; }
+  .cs-body :global(ul) { margin-top: 1rem; padding-left: 1.2rem; list-style: disc; }
+  .cs-body :global(li) { margin-top: 0.35rem; }
+  .cs-body :global(a) { color: var(--accent); text-decoration: underline; }
+  .cs-body :global(blockquote) {
+    margin-top: 1.2rem;
+    padding-left: 1.1rem;
+    border-left: 3px solid var(--accent);
+    font-family: var(--font-display);
+    font-size: var(--t-lg);
+    color: var(--ink);
+  }
+
+  .cs-services {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .cs-services__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.9rem;
+  }
+  .cs-services__tag {
+    font-size: var(--t-sm);
+    color: var(--ink-2);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--r-pill);
+    padding: 0.3rem 0.85rem;
+  }
+</style>

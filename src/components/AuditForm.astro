@@ -1,0 +1,149 @@
+---
+import Icon from './Icon.astro';
+import { site } from '@data/site';
+
+/**
+ * Free AI Marketing Audit form. On submit it fires a GA4 lead event, POSTs the
+ * lead to Formspree (so it is captured even if the visitor never sends the
+ * WhatsApp message), then opens a prefilled WhatsApp chat. Honeypot for spam.
+ */
+---
+<form class="auditform" data-auditform novalidate>
+  <div class="auditform__row">
+    <label class="field">
+      <span class="field__label">Your name</span>
+      <input type="text" name="name" required autocomplete="name" placeholder="Aisyah Rahman" />
+    </label>
+    <label class="field">
+      <span class="field__label">Website</span>
+      <input type="url" name="website" required inputmode="url" placeholder="https://yourcompany.com" />
+    </label>
+  </div>
+  <label class="field">
+    <span class="field__label">WhatsApp number</span>
+    <input type="tel" name="whatsapp" required inputmode="tel" placeholder="+60 12-345 6789" />
+  </label>
+  <label class="field">
+    <span class="field__label">Your biggest marketing challenge</span>
+    <textarea name="challenge" required rows="3" placeholder="e.g. our leads dried up after we paused ads"></textarea>
+  </label>
+
+  <!-- honeypot — hidden from people, bots fill it -->
+  <div class="auditform__hp" aria-hidden="true">
+    <label>Company<input type="text" name="company" tabindex="-1" autocomplete="off" /></label>
+  </div>
+
+  <button type="submit" class="btn btn--accent auditform__submit">
+    Request my free audit
+    <Icon name="arrow" size={15} />
+  </button>
+  <p class="auditform__note">
+    We reply the same day on WhatsApp. The audit is a real review by our team —
+    no automated report, no obligation.
+  </p>
+
+  <p class="auditform__done" hidden role="status">
+    Thanks — opening WhatsApp so you can send this through. If nothing opens,
+    message us at {site.whatsapp.display}.
+  </p>
+</form>
+
+<style>
+  .auditform { display: flex; flex-direction: column; gap: 1rem; }
+  .auditform__row {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 560px) {
+    .auditform__row { grid-template-columns: 1fr 1fr; }
+  }
+  .field { display: flex; flex-direction: column; gap: 0.35rem; }
+  .field__label {
+    font-size: var(--t-sm);
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .field input, .field textarea {
+    font: inherit;
+    font-size: var(--t-sm);
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--r-sm);
+    padding: 0.7rem 0.85rem;
+    width: 100%;
+    transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+  .field input:focus, .field textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-faint);
+  }
+  .field textarea { resize: vertical; }
+  .field input:user-invalid, .field textarea:user-invalid {
+    border-color: var(--error);
+  }
+  .auditform__hp {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  .auditform__submit { align-self: flex-start; margin-top: 0.25rem; }
+  .auditform__note { font-size: var(--t-xs); color: var(--ink-3); }
+  .auditform__done {
+    font-size: var(--t-sm);
+    color: var(--ink);
+    background: var(--accent-faint);
+    border: 1px solid var(--accent-soft);
+    border-radius: var(--r-sm);
+    padding: 0.8rem 0.95rem;
+  }
+</style>
+
+<script is:inline define:vars={{ endpoint: site.formspreeEndpoint, waNumber: site.whatsapp.number }}>
+  (function () {
+    var form = document.querySelector('[data-auditform]');
+    if (!form) return;
+    var done = form.querySelector('.auditform__done');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      if (form.elements['company'] && form.elements['company'].value) return; // honeypot
+
+      var name = form.elements['name'].value.trim();
+      var website = form.elements['website'].value.trim();
+      var whatsapp = form.elements['whatsapp'].value.trim();
+      var challenge = form.elements['challenge'].value.trim();
+
+      // 1. GA4 lead event — measures intent even if WhatsApp is never sent.
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', { method: 'audit_form' });
+      }
+
+      // 2. Parallel capture to Formspree — lead is saved regardless of WhatsApp.
+      try {
+        var fd = new FormData(form);
+        fd.delete('company');
+        if (endpoint && endpoint.indexOf('REPLACE_ME') === -1) {
+          fetch(endpoint, { method: 'POST', body: fd, headers: { Accept: 'application/json' } })
+            .catch(function () {});
+        }
+      } catch (err) {}
+
+      // 3. Open a prefilled WhatsApp chat.
+      var msg =
+        "Hi Arus Digital, I'd like a free AI marketing audit.\n\n" +
+        'Name: ' + name + '\n' +
+        'Website: ' + website + '\n' +
+        'WhatsApp: ' + whatsapp + '\n' +
+        'Biggest challenge: ' + challenge;
+      var url = 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(msg);
+
+      if (done) { done.hidden = false; }
+      window.open(url, '_blank', 'noopener');
+    });
+  })();
+</script>

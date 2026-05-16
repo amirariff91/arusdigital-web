@@ -1,0 +1,105 @@
+---
+import { site } from '@data/site';
+
+/**
+ * GA4 with Consent Mode v2. Analytics + ad storage default to "denied";
+ * nothing tracks until the visitor accepts.
+ *
+ * The whole component — GA scripts AND the consent banner — only renders when
+ * a real measurement id is set. With no analytics there is nothing to consent
+ * to, so showing a cookie banner would be pointless friction.
+ */
+const gaId = site.gaMeasurementId;
+const gaEnabled = /^G-[A-Z0-9]{6,}$/.test(gaId) && !gaId.includes('REPLACE');
+---
+{gaEnabled && (
+  <Fragment>
+    <script is:inline define:vars={{ gaId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        wait_for_update: 500,
+      });
+      // Re-apply a previously granted choice before GA initialises.
+      try {
+        if (localStorage.getItem('ad-consent') === 'granted') {
+          gtag('consent', 'update', {
+            ad_storage: 'granted', ad_user_data: 'granted',
+            ad_personalization: 'granted', analytics_storage: 'granted',
+          });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', gaId);
+    </script>
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+
+    <div class="consent" id="consent-banner" hidden role="dialog" aria-label="Privacy choices" aria-live="polite">
+      <p class="consent__text">
+        We use cookies for analytics to understand how the site is used. You can
+        accept or decline — declining keeps everything anonymous.
+      </p>
+      <div class="consent__actions">
+        <button type="button" class="btn btn--ghost" data-consent="denied">Decline</button>
+        <button type="button" class="btn btn--accent" data-consent="granted">Accept</button>
+      </div>
+    </div>
+
+    <script is:inline>
+      (function () {
+        var banner = document.getElementById('consent-banner');
+        if (!banner) return;
+        var stored = null;
+        try { stored = localStorage.getItem('ad-consent'); } catch (e) {}
+        if (!stored) banner.hidden = false;
+
+        banner.addEventListener('click', function (e) {
+          var btn = e.target.closest('[data-consent]');
+          if (!btn) return;
+          var choice = btn.getAttribute('data-consent');
+          try { localStorage.setItem('ad-consent', choice); } catch (e) {}
+          if (choice === 'granted' && typeof window.gtag === 'function') {
+            window.gtag('consent', 'update', {
+              ad_storage: 'granted', ad_user_data: 'granted',
+              ad_personalization: 'granted', analytics_storage: 'granted',
+            });
+          }
+          banner.hidden = true;
+        });
+      })();
+    </script>
+  </Fragment>
+)}
+
+<style>
+  .consent {
+    position: fixed;
+    left: 1rem; right: 1rem; bottom: 1rem;
+    z-index: 200;
+    max-width: 30rem;
+    margin-inline: auto;
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--r);
+    box-shadow: var(--shadow-lg);
+    padding: 1.1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    animation: consent-in 0.4s var(--ease) both;
+  }
+  .consent[hidden] { display: none; }
+  @keyframes consent-in {
+    from { opacity: 0; transform: translateY(12px); }
+  }
+  .consent__text { font-size: var(--t-sm); color: var(--ink-2); }
+  .consent__actions { display: flex; gap: 0.6rem; justify-content: flex-end; }
+  @media (prefers-reduced-motion: reduce) {
+    .consent { animation: none; }
+  }
+</style>

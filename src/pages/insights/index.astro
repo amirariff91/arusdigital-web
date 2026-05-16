@@ -1,0 +1,188 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '@layouts/Base.astro';
+import Reveal from '@components/Reveal.astro';
+import Icon from '@components/Icon.astro';
+import CtaSection from '@components/CtaSection.astro';
+
+const articles = (await getCollection('insights'))
+  .filter((entry) => !entry.data.draft)
+  .sort(
+    (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+  );
+
+const hasArticles = articles.length > 0;
+
+const dateFmt = new Intl.DateTimeFormat('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+<Base
+  title="Insights — Arus Digital"
+  description="The Arus Digital insights blog. Plain notes on AI-native marketing — how an agency run on AI agents works, and what it changes for the businesses we serve."
+  path="/insights"
+>
+  <!-- Hero -->
+  <section class="section">
+    <div class="container insights-hero">
+      <Reveal>
+        <p class="eyebrow">Insights</p>
+        <h1>Notes on AI-native marketing.</h1>
+        <p class="lead">
+          This is where Arus Digital writes plainly about running a marketing
+          agency on AI agents — what it changes for turnaround, transparency and
+          cost, and where human judgement still decides everything.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  {hasArticles ? (
+    <section class="section section--alt">
+      <div class="container">
+        <div class="insights-grid">
+          {articles.map((entry, i) => (
+            <Reveal delay={i * 70}>
+              <a href={`/insights/${entry.id}`} class="article-card">
+                <div class="article-card__meta">
+                  <time datetime={entry.data.pubDate.toISOString()}>
+                    {dateFmt.format(entry.data.pubDate)}
+                  </time>
+                  <span class="article-card__dot" aria-hidden="true">·</span>
+                  <span>{entry.data.author}</span>
+                </div>
+                <h2 class="article-card__title">{entry.data.title}</h2>
+                <p class="article-card__desc">{entry.data.description}</p>
+                {entry.data.tags.length > 0 && (
+                  <div class="article-card__tags">
+                    {entry.data.tags.map((t) => (
+                      <span class="article-card__tag">{t}</span>
+                    ))}
+                  </div>
+                )}
+                <span class="article-card__more">
+                  Read article <Icon name="arrow" size={14} />
+                </span>
+              </a>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  ) : (
+    <section class="section section--alt">
+      <div class="container">
+        <Reveal class="insights-empty">
+          <span class="insights-empty__icon"><Icon name="content" size={26} /></span>
+          <h2>First articles coming soon.</h2>
+          <p>
+            We are writing the opening set of insights now. Until they land, the
+            best read on how we work is the About page, where we show the AI
+            stack that runs the agency.
+          </p>
+          <div class="insights-empty__actions">
+            <a href="/about" class="btn btn--accent">
+              How we run <Icon name="arrow" size={15} />
+            </a>
+            <a href="/services" class="btn btn--ghost">See our services</a>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )}
+
+  <CtaSection />
+</Base>
+
+<style>
+  .insights-hero { max-width: 44rem; }
+  .insights-hero h1 { margin: 0.9rem 0 1rem; }
+
+  .insights-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 760px) { .insights-grid { grid-template-columns: repeat(2, 1fr); } }
+  .insights-grid > :global(.reveal) { display: flex; }
+
+  .article-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1.7rem 1.6rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .article-card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-2px);
+  }
+  .article-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: var(--t-xs);
+    color: var(--ink-3);
+  }
+  .article-card__dot { color: var(--border-strong); }
+  .article-card__title { font-size: var(--t-xl); margin: 0.6rem 0 0.6rem; }
+  .article-card__desc { font-size: var(--t-sm); color: var(--ink-2); }
+  .article-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1.1rem;
+  }
+  .article-card__tag {
+    font-size: var(--t-xs);
+    color: var(--ink-3);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--r-pill);
+    padding: 0.2rem 0.65rem;
+  }
+  .article-card__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: auto;
+    padding-top: 1.2rem;
+    font-size: var(--t-sm);
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .insights-empty {
+    max-width: 38rem;
+    margin-inline: auto;
+    text-align: center;
+    padding: clamp(1.6rem, 4vw, 2.6rem);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .insights-empty__icon {
+    display: grid;
+    place-items: center;
+    width: 3.2rem; height: 3.2rem;
+    margin: 0 auto 1.1rem;
+    border-radius: var(--r-pill);
+    background: var(--accent-faint);
+    color: var(--accent);
+  }
+  .insights-empty h2 { font-size: var(--t-2xl); margin-bottom: 0.9rem; }
+  .insights-empty p { font-size: var(--t-base); color: var(--ink-2); }
+  .insights-empty__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    justify-content: center;
+    margin-top: 1.6rem;
+  }
+</style>

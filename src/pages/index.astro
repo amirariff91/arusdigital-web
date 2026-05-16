@@ -1,0 +1,429 @@
+---
+import Base from '@layouts/Base.astro';
+import Reveal from '@components/Reveal.astro';
+import ServiceCard from '@components/ServiceCard.astro';
+import CtaSection from '@components/CtaSection.astro';
+import Icon from '@components/Icon.astro';
+import { services } from '@data/nav';
+import { comparisonRows } from '@data/comparison';
+import { proofStack, proofStats } from '@data/proof';
+import { site, whatsappLink } from '@data/site';
+
+const serviceIcons = ['seo', 'paid', 'content', 'cro', 'web', 'social'];
+
+const heroStats = [
+  { value: '100%', label: 'AI-operated, end to end' },
+  { value: '7-day', label: 'typical campaign turnaround' },
+  { value: 'KL', label: 'based · serving all of SEA' },
+];
+
+const steps = [
+  { n: '01', title: 'Free audit', text: 'We review your site, funnel and channels and show you exactly where the money leaks — before you commit to anything.' },
+  { n: '02', title: 'Agents build', text: 'Autonomous AI agents draft, test and ship the work — SEO, ads, content, pages — at a pace no human team matches.' },
+  { n: '03', title: 'Human review gate', text: 'Nothing goes live without a strategist signing off. People own taste, judgement and your brand.' },
+  { n: '04', title: 'Live reporting', text: 'Pull a report the moment you want one. No month-end deck, no waiting, no spin.' },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: site.name,
+  url: site.domain,
+};
+---
+<Base
+  title="Arus Digital — The agency that runs on AI"
+  description={site.description}
+  path="/"
+  jsonLd={jsonLd}
+>
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <p class="eyebrow">AI-native marketing agency · Kuala Lumpur</p>
+      <h1 class="hero__title">The agency that runs on <em>AI</em>.</h1>
+      <p class="hero__sub">
+        Full-service marketing — SEO, paid, content, CRO, web and social —
+        delivered by autonomous AI agents. Faster, sharper, and a fraction of
+        the cost of a traditional agency.
+      </p>
+      <div class="hero__actions">
+        <a href="/audit" class="btn btn--accent">
+          Get a free AI marketing audit
+          <Icon name="arrow" size={15} />
+        </a>
+        <a
+          href={whatsappLink('Hi Arus Digital, I would like to know more about working with you.')}
+          class="btn btn--ghost"
+          target="_blank"
+          rel="noopener"
+        >
+          <Icon name="whatsapp" size={16} />
+          Chat on WhatsApp
+        </a>
+      </div>
+      <ul class="hero__stats">
+        {heroStats.map((s) => (
+          <li>
+            <span class="hero__stat-num">{s.value}</span>
+            <span class="hero__stat-label">{s.label}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══ SERVICES ═══ -->
+  <section class="section section--alt" id="services">
+    <div class="container">
+      <Reveal class="section-head">
+        <p class="eyebrow">What we do</p>
+        <h2>Six services.<br />One AI-native team.</h2>
+        <p class="lead">
+          Every service a full agency offers — run by AI agents under human
+          direction. Pick one, or hand us the whole funnel.
+        </p>
+      </Reveal>
+      <div class="svc-grid">
+        {services.map((svc, i) => (
+          <Reveal delay={i * 60}>
+            <ServiceCard
+              title={svc.label}
+              href={svc.href}
+              summary={svc.desc ?? ''}
+              icon={serviceIcons[i]}
+              index={i + 1}
+            />
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ COMPARISON ═══ -->
+  <section class="section" id="why">
+    <div class="container">
+      <Reveal class="section-head">
+        <p class="eyebrow">The difference</p>
+        <h2>What changes when your<br />agency runs on AI.</h2>
+        <p class="lead">
+          Not a list of features — a list of things that get better for you.
+          We even kept the row where a traditional agency still wins.
+        </p>
+      </Reveal>
+      <Reveal class="cmp">
+        <div class="cmp__head" role="row">
+          <span class="cmp__dim-head"></span>
+          <span class="cmp__col cmp__col--arus">Arus Digital</span>
+          <span class="cmp__col">Traditional agency</span>
+        </div>
+        {comparisonRows.map((row) => (
+          <div class:list={['cmp__row', { 'cmp__row--concede': row.concede }]}>
+            <span class="cmp__dim">{row.dimension}</span>
+            <span class="cmp__cell cmp__cell--arus">
+              <Icon name={row.concede ? 'cross' : 'check'} size={16} class="cmp__mark" />
+              {row.arus}
+            </span>
+            <span class="cmp__cell">
+              <Icon name={row.concede ? 'check' : 'cross'} size={16} class="cmp__mark cmp__mark--trad" />
+              {row.traditional}
+            </span>
+          </div>
+        ))}
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ═══ WE ARE OUR OWN PROOF ═══ -->
+  <section class="section section--dark" id="proof">
+    <div class="container">
+      <Reveal class="section-head">
+        <p class="eyebrow">We are our own proof</p>
+        <h2>We don't sell AI theory.<br />We run on it.</h2>
+        <p class="lead" style="color:var(--on-dark-2)">
+          Arus Digital operates almost entirely on AI. This is our actual
+          internal stack — three people delivering the output of a much
+          larger agency.
+        </p>
+      </Reveal>
+
+      <div class="proof-stats">
+        {proofStats.map((s) => (
+          <div class="proof-stat">
+            <span class="proof-stat__num">{s.value}</span>
+            <span class="proof-stat__label">{s.label}</span>
+          </div>
+        ))}
+      </div>
+
+      <div class="proof-grid">
+        {proofStack.map((p, i) => (
+          <Reveal delay={i * 50} class="proof-card">
+            <span class="proof-card__fn">{p.fn}</span>
+            <span class="proof-card__tool">{p.tool}</span>
+            <p class="proof-card__desc">{p.desc}</p>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ AI SOLUTIONS + MICCY ═══ -->
+  <section class="section section--alt" id="ai">
+    <div class="container">
+      <Reveal class="section-head">
+        <p class="eyebrow">Beyond marketing</p>
+        <h2>We don't just use AI.<br />We build it.</h2>
+      </Reveal>
+      <div class="ai-grid">
+        <Reveal class="ai-card">
+          <Icon name="layers" size={28} class="ai-card__icon" />
+          <h3>AI Solutions</h3>
+          <p>
+            On-premise LLM deployment and custom AI agents for businesses where
+            data can't leave the building. PDPA-compliant, fully owned by you.
+          </p>
+          <a href="/ai-solutions" class="ai-card__link">Explore AI Solutions <Icon name="arrow" size={14} /></a>
+        </Reveal>
+        <Reveal class="ai-card" delay={80}>
+          <Icon name="ai" size={28} class="ai-card__icon" />
+          <h3>Miccy</h3>
+          <p>
+            The AI intelligence officer we built for ourselves first — a daily
+            brief on metrics, competitors and anomalies for Malaysian CEOs.
+          </p>
+          <a href="/miccy" class="ai-card__link">Meet Miccy <Icon name="arrow" size={14} /></a>
+        </Reveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ HOW WE WORK ═══ -->
+  <section class="section" id="process">
+    <div class="container">
+      <Reveal class="section-head">
+        <p class="eyebrow">How we work</p>
+        <h2>The Arus loop.</h2>
+        <p class="lead">
+          One simple cycle: AI does the volume, humans own the judgement, and
+          you see everything as it happens.
+        </p>
+      </Reveal>
+      <ol class="steps">
+        {steps.map((step, i) => (
+          <Reveal as="li" delay={i * 70} class="step">
+            <span class="step__n">{step.n}</span>
+            <h3 class="step__title">{step.title}</h3>
+            <p class="step__text">{step.text}</p>
+          </Reveal>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <CtaSection />
+</Base>
+
+<style>
+  /* ---- Section head ---- */
+  .section-head { max-width: 38rem; margin-bottom: 2.75rem; }
+  .section-head h2 { margin: 0.7rem 0 0.8rem; }
+
+  /* ---- Hero ---- */
+  .hero { padding-block: clamp(3.5rem, 8vw, 7rem); }
+  .hero__inner { max-width: 52rem; }
+  .hero__title {
+    font-size: var(--t-4xl);
+    margin: 1rem 0 1.1rem;
+  }
+  .hero__title em { color: var(--accent); }
+  .hero__sub {
+    font-size: var(--t-lg);
+    color: var(--ink-2);
+    max-width: 40rem;
+  }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1.7rem;
+  }
+  .hero__stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 2.75rem;
+    margin-top: 2.75rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .hero__stat-num {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--t-2xl);
+    color: var(--ink);
+  }
+  .hero__stat-label { font-size: var(--t-sm); color: var(--ink-3); }
+
+  /* ---- Services grid ---- */
+  .svc-grid {
+    display: grid;
+    gap: 1.1rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 600px) { .svc-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 940px) { .svc-grid { grid-template-columns: repeat(3, 1fr); } }
+  .svc-grid > :global(.reveal) { display: flex; }
+  .svc-grid > :global(.reveal) > :global(.svc) { width: 100%; }
+
+  /* ---- Comparison ---- */
+  .cmp { border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; }
+  .cmp__head, .cmp__row {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .cmp__head { display: none; }
+  .cmp__col {
+    padding: 0.9rem 1.25rem;
+    font-weight: 700;
+    font-size: var(--t-sm);
+    background: var(--surface-2);
+  }
+  .cmp__col--arus { color: var(--accent); }
+  .cmp__row { border-top: 1px solid var(--border); background: var(--surface); }
+  .cmp__row--concede { background: var(--surface-2); }
+  .cmp__dim {
+    padding: 1rem 1.25rem 0.3rem;
+    font-family: var(--font-display);
+    font-size: var(--t-lg);
+    color: var(--ink);
+  }
+  .cmp__cell {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.6rem 1.25rem;
+    font-size: var(--t-sm);
+    color: var(--ink-2);
+  }
+  .cmp__cell--arus { color: var(--ink); font-weight: 500; }
+  .cmp__mark { flex: none; margin-top: 2px; color: var(--accent); }
+  .cmp__mark--trad { color: var(--ink-3); }
+  .cmp__cell:last-child { padding-bottom: 1.1rem; }
+
+  @media (min-width: 760px) {
+    .cmp__head, .cmp__row { grid-template-columns: 0.9fr 1.55fr 1.55fr; }
+    .cmp__head { display: grid; }
+    .cmp__dim-head { background: var(--surface-2); }
+    .cmp__dim {
+      display: flex;
+      align-items: center;
+      padding: 1.15rem 1.25rem;
+      font-size: var(--t-base);
+    }
+    .cmp__cell {
+      align-items: flex-start;
+      padding: 1.15rem 1.25rem;
+      border-left: 1px solid var(--border);
+    }
+    .cmp__cell:last-child { padding-bottom: 1.15rem; }
+  }
+
+  /* ---- Proof ---- */
+  .proof-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+  @media (min-width: 720px) { .proof-stats { grid-template-columns: repeat(4, 1fr); } }
+  .proof-stat {
+    padding: 1.25rem;
+    background: var(--dark-2);
+    border: 1px solid var(--dark-line);
+    border-radius: var(--r);
+  }
+  .proof-stat__num {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--t-2xl);
+    color: var(--accent);
+  }
+  .proof-stat__label { font-size: var(--t-sm); color: var(--on-dark-mute); }
+
+  .proof-grid {
+    display: grid;
+    gap: 1.1rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 600px) { .proof-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 940px) { .proof-grid { grid-template-columns: repeat(3, 1fr); } }
+  .proof-card {
+    padding: 1.4rem;
+    background: var(--dark-2);
+    border: 1px solid var(--dark-line);
+    border-radius: var(--r);
+  }
+  .proof-card__fn {
+    font-size: var(--t-xs);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .proof-card__tool {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--t-lg);
+    color: var(--on-dark);
+    margin: 0.35rem 0 0.45rem;
+  }
+  .proof-card__desc { font-size: var(--t-sm); color: var(--on-dark-2); }
+
+  /* ---- AI Solutions + Miccy ---- */
+  .ai-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 720px) { .ai-grid { grid-template-columns: repeat(2, 1fr); } }
+  .ai-card {
+    padding: 1.9rem 1.7rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .ai-card__icon { color: var(--accent); margin-bottom: 1rem; }
+  .ai-card h3 { font-size: var(--t-2xl); margin-bottom: 0.5rem; }
+  .ai-card p { font-size: var(--t-sm); color: var(--ink-2); }
+  .ai-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1.1rem;
+    font-size: var(--t-sm);
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  /* ---- How we work ---- */
+  .steps {
+    display: grid;
+    gap: 1.1rem;
+    grid-template-columns: 1fr;
+    counter-reset: step;
+  }
+  @media (min-width: 600px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1000px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+  .step {
+    padding: 1.5rem 1.4rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+  }
+  .step__n {
+    font-family: var(--font-display);
+    font-size: var(--t-xl);
+    color: var(--accent);
+  }
+  .step__title { font-size: var(--t-lg); margin: 0.5rem 0 0.4rem; }
+  .step__text { font-size: var(--t-sm); color: var(--ink-2); }
+</style>

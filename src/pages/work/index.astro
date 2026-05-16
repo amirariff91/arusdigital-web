@@ -1,0 +1,209 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '@layouts/Base.astro';
+import Reveal from '@components/Reveal.astro';
+import Icon from '@components/Icon.astro';
+import CtaSection from '@components/CtaSection.astro';
+import { whatsappLink } from '@data/site';
+
+const studies = (await getCollection('caseStudies'))
+  .filter((entry) => !entry.data.draft)
+  .sort(
+    (a, b) =>
+      b.data.publishedDate.getTime() - a.data.publishedDate.getTime()
+  );
+
+const hasWork = studies.length > 0;
+---
+<Base
+  title="Selected work — Arus Digital"
+  description="Selected work from Arus Digital. Client results are shared directly under NDA — and our own AI-run operation is the proof you can check today."
+  path="/work"
+>
+  <!-- Hero -->
+  <section class="section">
+    <div class="container work-hero">
+      <Reveal>
+        <p class="eyebrow">Selected work</p>
+        <h1>The work,<br /><em>and the proof.</em></h1>
+        <p class="lead">
+          We are a young agency, so we will not pad this page with logos that do
+          not belong to us. Here is what we can show, and how to see the rest.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  {hasWork ? (
+    <section class="section section--alt">
+      <div class="container">
+        <div class="work-grid">
+          {studies.map((entry, i) => (
+            <Reveal delay={i * 70}>
+              <a href={`/work/${entry.id}`} class="work-card">
+                <div class="work-card__meta">
+                  <span class="work-card__client">{entry.data.client}</span>
+                  <span class="work-card__sector">{entry.data.sector}</span>
+                </div>
+                <h2 class="work-card__title">{entry.data.title}</h2>
+                <p class="work-card__summary">{entry.data.summary}</p>
+                {entry.data.metrics.length > 0 && (
+                  <div class="work-card__metrics">
+                    {entry.data.metrics.map((m) => (
+                      <div class="work-card__metric">
+                        <span class="work-card__value">{m.value}</span>
+                        <span class="work-card__label">{m.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                <span class="work-card__more">
+                  Read the story <Icon name="arrow" size={14} />
+                </span>
+              </a>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  ) : (
+    <section class="section section--alt">
+      <div class="container">
+        <Reveal class="work-empty">
+          <span class="work-empty__icon"><Icon name="shield" size={26} /></span>
+          <h2>Selected work is available on request.</h2>
+          <p>
+            Most of our client work is covered by NDA, and the results belong to
+            the clients who earned them. Rather than dress this page up with
+            numbers we cannot stand behind, we share full case studies directly
+            with you on a call.
+          </p>
+          <p>
+            In the meantime, the most honest case study we have is our own
+            agency. Arus Digital runs its entire operation on AI agents, and the
+            About page shows the exact stack that lets three people deliver
+            agency-scale output. We are our own first proof.
+          </p>
+          <div class="work-empty__actions">
+            <a href="/about" class="btn btn--accent">
+              See how we run <Icon name="arrow" size={15} />
+            </a>
+            <a href="/audit" class="btn btn--ghost">Get a free audit</a>
+            <a
+              href={whatsappLink('Hi Arus Digital, I would like to see your case studies.')}
+              class="btn btn--ghost"
+              target="_blank"
+              rel="noopener"
+            >
+              <Icon name="whatsapp" size={16} /> Ask for case studies
+            </a>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )}
+
+  <CtaSection />
+</Base>
+
+<style>
+  .work-hero { max-width: 44rem; }
+  .work-hero h1 { margin: 0.9rem 0 1rem; }
+  .work-hero h1 em { color: var(--accent); }
+
+  .work-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 760px) { .work-grid { grid-template-columns: repeat(2, 1fr); } }
+  .work-grid > :global(.reveal) { display: flex; }
+
+  .work-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1.7rem 1.6rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .work-card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-2px);
+  }
+  .work-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.9rem;
+    align-items: baseline;
+  }
+  .work-card__client {
+    font-size: var(--t-xs);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .work-card__sector { font-size: var(--t-xs); color: var(--ink-3); }
+  .work-card__title { font-size: var(--t-xl); margin: 0.6rem 0 0.6rem; }
+  .work-card__summary { font-size: var(--t-sm); color: var(--ink-2); }
+  .work-card__metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.4rem;
+    margin: 1.2rem 0 0;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--border);
+  }
+  .work-card__metric { display: flex; flex-direction: column; }
+  .work-card__value {
+    font-family: var(--font-display);
+    font-size: var(--t-2xl);
+    color: var(--ink);
+  }
+  .work-card__label { font-size: var(--t-xs); color: var(--ink-3); }
+  .work-card__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: auto;
+    padding-top: 1.2rem;
+    font-size: var(--t-sm);
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .work-empty {
+    max-width: 40rem;
+    margin-inline: auto;
+    text-align: center;
+    padding: clamp(1.6rem, 4vw, 2.6rem);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .work-empty__icon {
+    display: grid;
+    place-items: center;
+    width: 3.2rem; height: 3.2rem;
+    margin: 0 auto 1.1rem;
+    border-radius: var(--r-pill);
+    background: var(--accent-faint);
+    color: var(--accent);
+  }
+  .work-empty h2 { font-size: var(--t-2xl); margin-bottom: 0.9rem; }
+  .work-empty p {
+    font-size: var(--t-base);
+    color: var(--ink-2);
+    margin-bottom: 1rem;
+  }
+  .work-empty__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    justify-content: center;
+    margin-top: 1.6rem;
+  }
+</style>

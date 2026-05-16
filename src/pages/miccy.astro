@@ -1,0 +1,423 @@
+---
+import Base from '@layouts/Base.astro';
+import Reveal from '@components/Reveal.astro';
+import Icon from '@components/Icon.astro';
+import CtaSection from '@components/CtaSection.astro';
+import { site, whatsappLink } from '@data/site';
+
+const steps = [
+  {
+    n: '01',
+    title: 'Connect',
+    text: 'Point Miccy at the systems you already run — Xero, HubSpot, Shopify, Slack, GA4, Notion and over 40 more. No migration, no rebuild. Miccy reads what you have.',
+  },
+  {
+    n: '02',
+    title: 'Watch',
+    text: 'Miccy monitors financials, operations, market signals and competitors around the clock. It learns your patterns and what normal looks like for your business.',
+  },
+  {
+    n: '03',
+    title: 'Decide',
+    text: 'Every morning you get five things that need attention. Each one comes with three options, a recommendation and the data behind it — delivered to WhatsApp or Telegram.',
+  },
+];
+
+const briefItems = [
+  {
+    severity: 'Critical',
+    color: 'var(--accent)',
+    text: 'Revenue down 28% vs 7-day average. 3 invoices unpaid (RM 340k).',
+  },
+  {
+    severity: 'Watch',
+    color: 'var(--status-watch)',
+    text: 'Top competitor launched an enterprise plan at 40% lower price. 12 new job postings.',
+  },
+  {
+    severity: 'Opportunity',
+    color: 'var(--status-ok)',
+    text: 'Industry peer acquired an analytics firm. First-mover window: 60 to 90 days.',
+  },
+];
+
+const tiers = [
+  {
+    name: 'Miccy Ops',
+    price: 'RM 2,990',
+    period: '/month',
+    setup: 'Setup RM 5,000',
+    audience: 'For SME owners and ops-focused leaders.',
+    highlighted: false,
+    features: [
+      'WhatsApp and Telegram intelligence delivery',
+      '3 custom intelligence workflows',
+      'Ops digest and team coordination',
+      'Automated follow-up on invoices, tasks and deadlines',
+      'Private server',
+      '1 month onboarding support',
+    ],
+  },
+  {
+    name: 'Miccy Executive',
+    price: 'RM 5,990',
+    period: '/month',
+    setup: 'Setup RM 10,000',
+    audience: 'For COOs, growing founders and division heads.',
+    highlighted: true,
+    features: [
+      'Everything in Ops',
+      'Morning Intelligence Brief daily at 7am',
+      '10 custom workflows',
+      'Competitor monitoring and market signals',
+      'Financial anomaly detection',
+      '3-month onboarding',
+    ],
+  },
+  {
+    name: 'Miccy Command',
+    price: 'from RM 12,000',
+    period: '/month',
+    setup: 'Setup RM 20,000 to 35,000',
+    audience: 'For group CEOs, GLCs and conglomerates.',
+    highlighted: false,
+    features: [
+      'Everything in Executive',
+      'Multi-entity and group consolidation',
+      'Custom competitor monitoring scope',
+      'GLC-grade compliance',
+      'Dedicated onboarding team',
+      'SLA-backed support',
+    ],
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Miccy',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  description:
+    'Miccy is an AI intelligence officer for Malaysian CEOs and decision makers — a daily prioritised brief on financials, competitor moves and operational anomalies.',
+  url: site.miccyAppUrl,
+  provider: { '@type': 'Organization', name: 'Arus Digital' },
+  offers: [
+    { '@type': 'Offer', name: 'Miccy Ops', price: '2990', priceCurrency: 'MYR' },
+    { '@type': 'Offer', name: 'Miccy Executive', price: '5990', priceCurrency: 'MYR' },
+    { '@type': 'Offer', name: 'Miccy Command', price: '12000', priceCurrency: 'MYR' },
+  ],
+};
+---
+<Base
+  title="Miccy — AI Intelligence Officer for Malaysian CEOs | Arus Digital"
+  description="Miccy is a dedicated AI intelligence officer for Malaysian CEOs. Every morning at 7am it delivers a prioritised brief on financials, competitor moves and anomalies."
+  path="/miccy"
+  jsonLd={jsonLd}
+>
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <p class="eyebrow">Our own AI product</p>
+      <h1 class="hero__title">Your <em>AI intelligence officer</em>, on duty every morning.</h1>
+      <p class="hero__sub">
+        Miccy is a dedicated AI intelligence officer for Malaysian CEOs and
+        decision makers. Every morning at 7am, Miccy delivers a prioritised
+        brief — financials, competitor moves and operational anomalies — so you
+        walk into the day already knowing what matters.
+      </p>
+      <div class="hero__actions">
+        <a href={site.miccyAppUrl} class="btn btn--accent" target="_blank" rel="noopener">
+          Open Miccy
+          <Icon name="arrow" size={15} />
+        </a>
+        <a
+          href={whatsappLink('Hi Arus Digital, I would like to know more about Miccy.')}
+          class="btn btn--ghost"
+          target="_blank"
+          rel="noopener"
+        >
+          <Icon name="whatsapp" size={16} />
+          Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ HOW IT WORKS ═══ -->
+  <section class="section section--alt">
+    <div class="container">
+      <Reveal class="section-head">
+        <p class="eyebrow">How it works</p>
+        <h2>Three steps from data<br />to a clear decision.</h2>
+        <p class="lead">
+          Miccy plugs into the systems you already use and turns the noise into
+          a short, ranked brief you can act on before the first meeting.
+        </p>
+      </Reveal>
+      <ol class="steps">
+        {steps.map((step, i) => (
+          <Reveal as="li" delay={i * 70} class="step">
+            <span class="step__n">{step.n}</span>
+            <h3 class="step__title">{step.title}</h3>
+            <p class="step__text">{step.text}</p>
+          </Reveal>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ═══ MORNING BRIEF PREVIEW ═══ -->
+  <section class="section">
+    <div class="container">
+      <Reveal class="section-head">
+        <p class="eyebrow">The morning brief</p>
+        <h2>What 7am looks like.</h2>
+        <p class="lead">
+          A sample brief. Five items at most, ranked by what they cost or earn
+          you. Each one tells you what happened and what it means.
+        </p>
+      </Reveal>
+      <Reveal class="brief">
+        <div class="brief__head">
+          <span class="brief__label">Morning Intelligence Brief</span>
+          <span class="brief__time"><Icon name="clock" size={14} /> 07:00</span>
+        </div>
+        <ul class="brief__list">
+          {briefItems.map((item) => (
+            <li class="brief__item">
+              <span class="brief__dot" style={`background:${item.color}`}></span>
+              <div>
+                <span class="brief__sev">{item.severity}</span>
+                <p class="brief__text">{item.text}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ═══ PRICING ═══ -->
+  <section class="section section--alt">
+    <div class="container">
+      <Reveal class="section-head">
+        <p class="eyebrow">Pricing</p>
+        <h2>Three tiers. Priced up front.</h2>
+        <p class="lead">
+          Pick the tier that matches the seat you sit in. Every engagement
+          includes a fixed setup and a private server.
+        </p>
+      </Reveal>
+      <div class="tiers">
+        {tiers.map((tier, i) => (
+          <Reveal delay={i * 70} class={tier.highlighted ? 'tier tier--featured' : 'tier'}>
+            {tier.highlighted && <span class="tier__badge">Most popular</span>}
+            <h3 class="tier__name">{tier.name}</h3>
+            <div class="tier__price">
+              <span class="tier__amount">{tier.price}</span>
+              <span class="tier__period">{tier.period}</span>
+            </div>
+            <p class="tier__setup">{tier.setup}</p>
+            <p class="tier__audience">{tier.audience}</p>
+            <ul class="tier__features">
+              {tier.features.map((f) => (
+                <li><Icon name="check" size={16} class="tier__check" />{f}</li>
+              ))}
+            </ul>
+            <a
+              href={whatsappLink(`Hi Arus Digital, I'm interested in Miccy ${tier.name.replace('Miccy ', '')}.`)}
+              target="_blank"
+              rel="noopener"
+              class:list={['btn', tier.highlighted ? 'btn--accent' : 'btn--ghost', 'tier__cta']}
+            >
+              <Icon name="whatsapp" size={16} />
+              Talk to us
+            </a>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaSection
+    title="Walk into tomorrow already briefed."
+    text="See Miccy live, or message us and we will set up your first morning brief."
+    waMessage="Hi Arus Digital, I would like to set up Miccy for my business."
+  />
+</Base>
+
+<style>
+  /* ---- Section head ---- */
+  .section-head { max-width: 38rem; margin-bottom: 2.75rem; }
+  .section-head h2 { margin: 0.7rem 0 0.8rem; }
+
+  /* ---- Hero ---- */
+  .hero { padding-block: clamp(3.5rem, 8vw, 7rem); }
+  .hero__inner { max-width: 52rem; }
+  .hero__title {
+    font-size: var(--t-4xl);
+    margin: 1rem 0 1.1rem;
+  }
+  .hero__title em { color: var(--accent); }
+  .hero__sub {
+    font-size: var(--t-lg);
+    color: var(--ink-2);
+    max-width: 42rem;
+  }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1.7rem;
+  }
+
+  /* ---- Steps ---- */
+  .steps {
+    display: grid;
+    gap: 1.1rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 760px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+  .step {
+    padding: 1.6rem 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+  }
+  .step__n {
+    font-family: var(--font-display);
+    font-size: var(--t-xl);
+    color: var(--accent);
+  }
+  .step__title { font-size: var(--t-lg); margin: 0.5rem 0 0.4rem; }
+  .step__text { font-size: var(--t-sm); color: var(--ink-2); }
+
+  /* ---- Morning brief preview ---- */
+  .brief {
+    max-width: 44rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .brief__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.4rem;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
+  }
+  .brief__label {
+    font-size: var(--t-xs);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .brief__time {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: var(--t-sm);
+    color: var(--ink-3);
+  }
+  .brief__list { display: flex; flex-direction: column; }
+  .brief__item {
+    display: flex;
+    gap: 0.85rem;
+    padding: 1.15rem 1.4rem;
+    border-top: 1px solid var(--border);
+  }
+  .brief__item:first-child { border-top: none; }
+  .brief__dot {
+    flex: none;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: var(--r-pill);
+    margin-top: 0.3rem;
+  }
+  .brief__sev {
+    font-size: var(--t-xs);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .brief__text {
+    font-size: var(--t-base);
+    color: var(--ink);
+    margin-top: 0.2rem;
+  }
+
+  /* ---- Pricing tiers ---- */
+  .tiers {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 760px) {
+    .tiers { grid-template-columns: repeat(3, 1fr); align-items: start; }
+  }
+  .tier {
+    display: flex;
+    flex-direction: column;
+    padding: 1.8rem 1.6rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .tier--featured {
+    border-color: var(--accent);
+    box-shadow: var(--shadow);
+    position: relative;
+  }
+  .tier__badge {
+    position: absolute;
+    top: -0.7rem;
+    left: 1.6rem;
+    background: var(--accent);
+    color: var(--on-accent);
+    font-size: var(--t-xs);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.7rem;
+    border-radius: var(--r-pill);
+  }
+  .tier__name { font-size: var(--t-xl); margin-bottom: 0.7rem; }
+  .tier__price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+    font-family: var(--font-display);
+    color: var(--ink);
+  }
+  .tier__amount { font-size: var(--t-2xl); }
+  .tier__period { font-size: var(--t-sm); color: var(--ink-3); font-family: var(--font-sans); }
+  .tier__setup { font-size: var(--t-xs); color: var(--ink-3); margin-top: 0.35rem; }
+  .tier__audience {
+    font-size: var(--t-sm);
+    color: var(--ink-2);
+    margin-top: 0.8rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .tier__features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin: 1.1rem 0 1.4rem;
+    flex: 1;
+  }
+  .tier__features li {
+    display: flex;
+    gap: 0.55rem;
+    font-size: var(--t-sm);
+    color: var(--ink-2);
+  }
+  .tier__check { color: var(--accent); flex: none; margin-top: 2px; }
+  .tier__cta { justify-content: center; gap: 0.5rem; }
+</style>

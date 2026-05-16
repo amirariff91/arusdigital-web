@@ -1,0 +1,191 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '@layouts/Base.astro';
+import Reveal from '@components/Reveal.astro';
+import Icon from '@components/Icon.astro';
+import PackagePricing from '@components/PackagePricing.astro';
+import FaqList from '@components/FaqList.astro';
+import CtaSection from '@components/CtaSection.astro';
+import { whatsappLink } from '@data/site';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('services');
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: d.title,
+  provider: { '@type': 'Organization', name: 'Arus Digital' },
+  areaServed: ['MY', 'SG', 'ID'],
+  description: d.seoDescription,
+};
+---
+<Base title={d.seoTitle} description={d.seoDescription} path={`/services/${entry.id}`} jsonLd={jsonLd}>
+  <!-- Hero -->
+  <section class="svc-hero section">
+    <div class="container svc-hero__inner">
+      <a href="/services" class="svc-hero__back"><Icon name="arrow" size={14} class="svc-hero__back-icon" />All services</a>
+      <p class="eyebrow">{d.eyebrow}</p>
+      <h1>{d.heroHeadline}</h1>
+      <p class="lead svc-hero__sub">{d.heroSub}</p>
+      <div class="svc-hero__actions">
+        <a href="/audit" class="btn btn--accent">Get a free audit <Icon name="arrow" size={15} /></a>
+        <a href={whatsappLink(`Hi Arus Digital, I'd like to talk about ${d.title}.`)} class="btn btn--ghost" target="_blank" rel="noopener">
+          <Icon name="whatsapp" size={16} /> Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach + what's included -->
+  <section class="section section--alt">
+    <div class="container svc-cols">
+      <Reveal class="svc-approach">
+        <p class="eyebrow">Our approach</p>
+        <div class="svc-prose">{d.approach}</div>
+        <div class="svc-body"><Content /></div>
+      </Reveal>
+      <Reveal class="svc-includes" delay={80}>
+        <h2 class="svc-includes__title">What's included</h2>
+        <ul>
+          {d.includes.map((item) => (
+            <li><Icon name="check" size={17} class="svc-includes__check" />{item}</li>
+          ))}
+        </ul>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- AI-native advantage -->
+  <section class="section">
+    <div class="container">
+      <Reveal class="svc-advantage">
+        <Icon name="bolt" size={28} class="svc-advantage__icon" />
+        <p class="eyebrow">The AI-native advantage</p>
+        <p class="svc-advantage__text">{d.aiAdvantage}</p>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- Packages -->
+  <section class="section section--alt">
+    <div class="container">
+      <Reveal class="section-head">
+        <p class="eyebrow">Packages</p>
+        <h2>Productized. Priced up front.</h2>
+        <p class="lead">
+          No opaque retainers. Pick a package, or talk to us about a custom scope.
+        </p>
+      </Reveal>
+      <Reveal>
+        <PackagePricing packages={d.packages} serviceName={d.title} />
+        <p class="svc-price-note">
+          Indicative pricing — your final quote depends on scope and ad spend.
+          Every engagement starts with a free audit.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container container-narrow">
+      <Reveal class="section-head">
+        <p class="eyebrow">Questions</p>
+        <h2>{d.title} — answered.</h2>
+      </Reveal>
+      <Reveal><FaqList items={d.faq} /></Reveal>
+    </div>
+  </section>
+
+  <CtaSection
+    title={`Ready to move on ${d.title.toLowerCase()}?`}
+    waMessage={`Hi Arus Digital, I'd like a free audit focused on ${d.title}.`}
+  />
+</Base>
+
+<style>
+  .svc-hero__inner { max-width: 50rem; }
+  .svc-hero__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: var(--t-sm);
+    color: var(--ink-3);
+    margin-bottom: 1.25rem;
+  }
+  .svc-hero__back:hover { color: var(--accent); }
+  .svc-hero__back-icon { transform: rotate(180deg); }
+  .svc-hero h1 { margin: 0.8rem 0 1rem; }
+  .svc-hero__sub { max-width: 40rem; }
+  .svc-hero__actions { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.6rem; }
+
+  .svc-cols {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 880px) {
+    .svc-cols { grid-template-columns: 1.6fr 1fr; gap: 3.5rem; }
+  }
+  .svc-prose, .svc-body {
+    font-size: var(--t-base);
+    color: var(--ink-2);
+    margin-top: 0.9rem;
+    max-width: 38rem; /* keep line length readable in the wide column */
+  }
+  .svc-prose { font-size: var(--t-lg); }
+  .svc-body :global(p) { margin-top: 0.9rem; }
+  .svc-body :global(h2), .svc-body :global(h3) { margin-top: 1.6rem; }
+
+  .svc-includes {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 1.7rem 1.6rem;
+    align-self: start;
+  }
+  .svc-includes__title { font-size: var(--t-xl); margin-bottom: 1rem; }
+  .svc-includes ul { display: flex; flex-direction: column; gap: 0.7rem; }
+  .svc-includes li {
+    display: flex;
+    gap: 0.6rem;
+    font-size: var(--t-sm);
+    color: var(--ink-2);
+  }
+  .svc-includes__check { color: var(--accent); flex: none; margin-top: 2px; }
+
+  .svc-advantage {
+    max-width: 44rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+  .svc-advantage .eyebrow { justify-content: center; }
+  .svc-advantage .eyebrow::before { display: none; }
+  .svc-advantage__icon { color: var(--accent); margin-inline: auto; margin-bottom: 0.9rem; }
+  .svc-advantage__text {
+    font-family: var(--font-display);
+    font-size: var(--t-2xl);
+    line-height: 1.3;
+    color: var(--ink);
+    margin-top: 0.6rem;
+  }
+
+  .section-head { max-width: 38rem; margin-bottom: 2.5rem; }
+  .section-head h2 { margin: 0.7rem 0 0.7rem; }
+  .svc-price-note {
+    font-size: var(--t-xs);
+    color: var(--ink-3);
+    margin-top: 1.25rem;
+    text-align: center;
+  }
+</style>

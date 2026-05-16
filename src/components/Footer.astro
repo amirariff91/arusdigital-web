@@ -1,0 +1,109 @@
+---
+import Wordmark from './Wordmark.astro';
+import { footerNav } from '@data/nav';
+import { site, whatsappLink } from '@data/site';
+
+const year = new Date().getFullYear();
+const wa = whatsappLink('Hi Arus Digital, I have a question about your services.');
+---
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <Wordmark tone="light" />
+      <p class="footer__tag">{site.tagline}</p>
+      <p class="footer__meta">
+        {site.location} · serving Malaysia, Singapore &amp; Indonesia
+      </p>
+      <div class="footer__contact">
+        <a href={wa} target="_blank" rel="noopener">WhatsApp {site.whatsapp.display}</a>
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+      </div>
+    </div>
+
+    <nav class="footer__nav" aria-label="Footer">
+      {footerNav.map((group) => (
+        <div class="footer__col">
+          <h2 class="footer__col-title">{group.title}</h2>
+          <ul>
+            {group.links.map((link) => (
+              <li><a href={link.href}>{link.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </nav>
+  </div>
+
+  <div class="container footer__base">
+    <span>© {year} {site.legalName} · {site.registrationNo}</span>
+    <span class="footer__pdpa">PDPA compliant · data handled under Malaysian law</span>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--dark);
+    color: var(--on-dark-mute);
+    padding-top: clamp(3rem, 6vw, 5rem);
+  }
+  .footer__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.75rem;
+    padding-bottom: 3rem;
+  }
+  .footer__tag {
+    font-family: var(--font-display);
+    font-size: var(--t-lg);
+    color: var(--on-dark);
+    margin-top: 0.9rem;
+  }
+  .footer__meta { font-size: var(--t-sm); margin-top: 0.4rem; }
+  .footer__contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-top: 1.1rem;
+    font-size: var(--t-sm);
+  }
+  .footer__contact a { color: var(--on-dark-2); transition: color var(--dur) var(--ease); }
+  .footer__contact a:hover { color: var(--accent); }
+
+  .footer__nav {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  .footer__col-title {
+    font-family: var(--font-sans);
+    font-size: var(--t-xs);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--on-dark-mute);
+    margin-bottom: 0.9rem;
+  }
+  .footer__col ul { display: flex; flex-direction: column; gap: 0.55rem; }
+  .footer__col a {
+    font-size: var(--t-sm);
+    color: var(--on-dark-2);
+    transition: color var(--dur) var(--ease);
+  }
+  .footer__col a:hover { color: var(--accent); }
+
+  .footer__base {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    justify-content: space-between;
+    padding-block: 1.5rem;
+    border-top: 1px solid var(--dark-line);
+    font-size: var(--t-xs);
+    color: var(--on-dark-mute);
+  }
+
+  @media (min-width: 720px) {
+    .footer__inner { grid-template-columns: 1.3fr 2fr; gap: 3.5rem; }
+    .footer__nav { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>

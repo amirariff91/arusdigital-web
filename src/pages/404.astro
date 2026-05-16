@@ -1,0 +1,59 @@
+---
+import Base from '@layouts/Base.astro';
+import Reveal from '@components/Reveal.astro';
+import Icon from '@components/Icon.astro';
+import { whatsappLink } from '@data/site';
+---
+<Base
+  title="Page not found — Arus Digital"
+  description="This page took a wrong turn. Head back to the Arus Digital homepage, browse our services, or message us on WhatsApp."
+  path="/404"
+  noindex={true}
+>
+  <section class="section notfound">
+    <div class="container">
+      <Reveal class="notfound__inner">
+        <p class="eyebrow">404</p>
+        <h1>This page took<br /><em>a wrong turn.</em></h1>
+        <p class="lead">
+          The page you were after is not here. It may have moved, or the link
+          had a small typo. No harm done — here is the way back.
+        </p>
+        <div class="notfound__actions">
+          <a href="/" class="btn btn--accent">
+            Back to home <Icon name="arrow" size={15} />
+          </a>
+          <a href="/services" class="btn btn--ghost">Browse services</a>
+          <a
+            href={whatsappLink('Hi Arus Digital, I was looking for something on your site.')}
+            class="btn btn--ghost"
+            target="_blank"
+            rel="noopener"
+          >
+            <Icon name="whatsapp" size={16} /> Chat on WhatsApp
+          </a>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .notfound { display: grid; place-items: center; }
+  .notfound__inner {
+    max-width: 38rem;
+    text-align: center;
+  }
+  .notfound .eyebrow { justify-content: center; }
+  .notfound .eyebrow::before { display: none; }
+  .notfound h1 { margin: 0.7rem 0 1rem; }
+  .notfound h1 em { color: var(--accent); }
+  .notfound .lead { margin-inline: auto; }
+  .notfound__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    justify-content: center;
+    margin-top: 1.8rem;
+  }
+</style>

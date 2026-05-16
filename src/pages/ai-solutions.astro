@@ -1,0 +1,443 @@
+---
+import Base from '@layouts/Base.astro';
+import Reveal from '@components/Reveal.astro';
+import Icon from '@components/Icon.astro';
+import CtaSection from '@components/CtaSection.astro';
+import { whatsappLink } from '@data/site';
+
+const offerings = [
+  {
+    icon: 'layers',
+    title: 'On-Premise LLM Deployment',
+    text: 'We deploy and manage open-source language models on your own infrastructure. Zero cloud dependency — the model, the data and the inference all stay inside your building.',
+  },
+  {
+    icon: 'ai',
+    title: 'Custom AI Agents',
+    text: 'Bespoke agents built for a specific workflow — customer service, procurement, HR, compliance review, research. Integrated with your existing systems and delivered in weeks, not quarters.',
+  },
+];
+
+const whyPoints = [
+  {
+    icon: 'shield',
+    text: 'Zero data sent externally. PDPA compliant from day one, because nothing leaves your network.',
+  },
+  {
+    icon: 'bolt',
+    text: 'Required for BFSI, healthcare and government-adjacent organisations where cloud AI is off the table.',
+  },
+  {
+    icon: 'clock',
+    text: 'No per-token cost after setup. You pay a flat monthly infrastructure cost, not a metered bill.',
+  },
+  {
+    icon: 'spark',
+    text: 'Fine-tuned on your company data, terminology and processes — so it answers in your context.',
+  },
+];
+
+const models = [
+  {
+    name: 'Qwen3.5',
+    vendor: 'Alibaba',
+    points: [
+      'Multilingual, including Bahasa Malaysia and Chinese',
+      'Apache 2.0 licence',
+      'Best price-to-performance',
+    ],
+    bestFor: 'Best for SMEs',
+  },
+  {
+    name: 'Nemotron-Cascade 2',
+    vendor: 'NVIDIA',
+    points: [
+      '30B MoE with 3B active parameters',
+      'Runs on modest hardware',
+      'Strong reasoning',
+    ],
+    bestFor: 'Best for enterprise agents',
+  },
+  {
+    name: 'GLM-5.1',
+    vendor: 'Z.ai',
+    points: [
+      'Strong agentic and coding performance',
+      'Strong Bahasa Malaysia, Chinese and English',
+      'Built for tool use',
+    ],
+    bestFor: 'Best for agentic workflows',
+  },
+];
+
+const packages = [
+  {
+    name: 'Starter On-Prem',
+    price: 'RM 15,000 to 30,000',
+    audience: 'A first deployment to prove the model on your hardware.',
+    highlighted: false,
+    features: [
+      'Single server',
+      '1 model',
+      'Up to 10 users',
+      '3-month support',
+    ],
+  },
+  {
+    name: 'Full Stack Deployment',
+    price: 'RM 50,000 to 120,000',
+    audience: 'A production setup with retrieval over your own documents.',
+    highlighted: true,
+    features: [
+      'Multi-model deployment',
+      'RAG pipeline on your documents',
+      'Custom agent workflows',
+      'Single sign-on',
+      'SLA support',
+    ],
+  },
+  {
+    name: 'Compliance-Grade',
+    price: 'RM 100,000+',
+    audience: 'For regulated environments that need full assurance.',
+    highlighted: false,
+    features: [
+      'Air-gapped options',
+      'Full audit logs',
+      'Role-based access control',
+      'Penetration test report',
+      'Regulatory documentation',
+    ],
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'On-Premise LLM Deployment and Custom AI Agents',
+  provider: { '@type': 'Organization', name: 'Arus Digital' },
+  areaServed: ['MY', 'SG', 'ID'],
+  description:
+    'On-premise LLM deployment and custom AI agents for businesses where data cannot leave the building. PDPA compliant, fully owned by the client.',
+};
+---
+<Base
+  title="AI Solutions — On-Premise LLMs & Custom AI Agents | Arus Digital"
+  description="On-premise LLM deployment and custom AI agents for businesses where data cannot leave the building. PDPA compliant and fully owned by you."
+  path="/ai-solutions"
+  jsonLd={jsonLd}
+>
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <p class="eyebrow">AI Solutions</p>
+      <h1 class="hero__title">Deploy AI your business <em>fully owns</em>.</h1>
+      <p class="hero__sub">
+        On-premise language models and custom agents for businesses where data
+        cannot leave the building. The model runs on your infrastructure, the
+        data stays inside your network, and you are PDPA compliant by design.
+      </p>
+      <div class="hero__actions">
+        <a href="/audit" class="btn btn--accent">
+          Get a free audit
+          <Icon name="arrow" size={15} />
+        </a>
+        <a
+          href={whatsappLink('Hi Arus Digital, I would like to talk about AI Solutions.')}
+          class="btn btn--ghost"
+          target="_blank"
+          rel="noopener"
+        >
+          <Icon name="whatsapp" size={16} />
+          Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ OFFERINGS ═══ -->
+  <section class="section section--alt">
+    <div class="container">
+      <Reveal class="section-head">
+        <p class="eyebrow">What we deliver</p>
+        <h2>Two ways we put AI<br />inside your walls.</h2>
+      </Reveal>
+      <div class="offer-grid">
+        {offerings.map((o, i) => (
+          <Reveal delay={i * 80} class="offer-card">
+            <Icon name={o.icon} size={28} class="offer-card__icon" />
+            <h3>{o.title}</h3>
+            <p>{o.text}</p>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ WHY ON-PREMISE ═══ -->
+  <section class="section">
+    <div class="container">
+      <Reveal class="section-head">
+        <p class="eyebrow">Why on-premise</p>
+        <h2>When the cloud<br />is not an option.</h2>
+        <p class="lead">
+          For some organisations, sending data to a third-party model is a
+          non-starter. On-premise removes that risk entirely.
+        </p>
+      </Reveal>
+      <ul class="why-grid">
+        {whyPoints.map((p, i) => (
+          <Reveal as="li" delay={i * 60} class="why-card">
+            <Icon name={p.icon} size={22} class="why-card__icon" />
+            <p>{p.text}</p>
+          </Reveal>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══ AVAILABLE MODELS ═══ -->
+  <section class="section section--alt">
+    <div class="container">
+      <Reveal class="section-head">
+        <p class="eyebrow">Available models</p>
+        <h2>Open-source models<br />we deploy and tune.</h2>
+        <p class="lead">
+          We pick the model to fit your hardware, your languages and your
+          workload. All open-source, all yours to keep.
+        </p>
+      </Reveal>
+      <div class="model-grid">
+        {models.map((m, i) => (
+          <Reveal delay={i * 70} class="model-card">
+            <h3 class="model-card__name">{m.name}</h3>
+            <span class="model-card__vendor">{m.vendor}</span>
+            <ul class="model-card__points">
+              {m.points.map((pt) => (
+                <li><Icon name="check" size={16} class="model-card__check" />{pt}</li>
+              ))}
+            </ul>
+            <span class="model-card__best">{m.bestFor}</span>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DEPLOYMENT PACKAGES ═══ -->
+  <section class="section">
+    <div class="container">
+      <Reveal class="section-head">
+        <p class="eyebrow">Deployment packages</p>
+        <h2>Three ways to start.</h2>
+        <p class="lead">
+          From a single proof-of-concept server to a fully air-gapped,
+          audit-ready deployment. Final scope sets the final quote.
+        </p>
+      </Reveal>
+      <div class="pkg-grid">
+        {packages.map((pkg, i) => (
+          <Reveal delay={i * 70} class={pkg.highlighted ? 'pkg pkg--featured' : 'pkg'}>
+            {pkg.highlighted && <span class="pkg__badge">Most popular</span>}
+            <h3 class="pkg__name">{pkg.name}</h3>
+            <div class="pkg__price"><span class="pkg__amount">{pkg.price}</span></div>
+            <p class="pkg__audience">{pkg.audience}</p>
+            <ul class="pkg__features">
+              {pkg.features.map((f) => (
+                <li><Icon name="check" size={16} class="pkg__check" />{f}</li>
+              ))}
+            </ul>
+            <a
+              href={whatsappLink(`Hi Arus Digital, I'm interested in the ${pkg.name} deployment package.`)}
+              target="_blank"
+              rel="noopener"
+              class:list={['btn', pkg.highlighted ? 'btn--accent' : 'btn--ghost', 'pkg__cta']}
+            >
+              <Icon name="whatsapp" size={16} />
+              Talk to us
+            </a>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaSection
+    title="Bring AI in-house, on your terms."
+    text="Tell us about your environment and constraints. We will map a deployment that keeps your data where it belongs."
+    waMessage="Hi Arus Digital, I would like to discuss an on-premise AI deployment."
+  />
+</Base>
+
+<style>
+  /* ---- Section head ---- */
+  .section-head { max-width: 38rem; margin-bottom: 2.75rem; }
+  .section-head h2 { margin: 0.7rem 0 0.8rem; }
+
+  /* ---- Hero ---- */
+  .hero { padding-block: clamp(3.5rem, 8vw, 7rem); }
+  .hero__inner { max-width: 52rem; }
+  .hero__title {
+    font-size: var(--t-4xl);
+    margin: 1rem 0 1.1rem;
+  }
+  .hero__title em { color: var(--accent); }
+  .hero__sub {
+    font-size: var(--t-lg);
+    color: var(--ink-2);
+    max-width: 42rem;
+  }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1.7rem;
+  }
+
+  /* ---- Offerings ---- */
+  .offer-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 720px) { .offer-grid { grid-template-columns: repeat(2, 1fr); } }
+  .offer-card {
+    padding: 1.9rem 1.7rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .offer-card__icon { color: var(--accent); margin-bottom: 1rem; }
+  .offer-card h3 { font-size: var(--t-2xl); margin-bottom: 0.5rem; }
+  .offer-card p { font-size: var(--t-sm); color: var(--ink-2); }
+
+  /* ---- Why on-premise ---- */
+  .why-grid {
+    display: grid;
+    gap: 1.1rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 720px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+  .why-card {
+    display: flex;
+    gap: 0.85rem;
+    padding: 1.5rem 1.4rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+  }
+  .why-card__icon { color: var(--accent); flex: none; margin-top: 2px; }
+  .why-card p { font-size: var(--t-sm); color: var(--ink-2); }
+
+  /* ---- Models ---- */
+  .model-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 760px) { .model-grid { grid-template-columns: repeat(3, 1fr); align-items: start; } }
+  .model-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.7rem 1.6rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .model-card__name {
+    font-family: var(--font-display);
+    font-size: var(--t-xl);
+    color: var(--ink);
+  }
+  .model-card__vendor {
+    font-size: var(--t-xs);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-top: 0.2rem;
+  }
+  .model-card__points {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin: 1.1rem 0 1.2rem;
+    flex: 1;
+  }
+  .model-card__points li {
+    display: flex;
+    gap: 0.55rem;
+    font-size: var(--t-sm);
+    color: var(--ink-2);
+  }
+  .model-card__check { color: var(--accent); flex: none; margin-top: 2px; }
+  .model-card__best {
+    font-size: var(--t-sm);
+    font-weight: 600;
+    color: var(--accent);
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ---- Packages ---- */
+  .pkg-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 760px) { .pkg-grid { grid-template-columns: repeat(3, 1fr); align-items: start; } }
+  .pkg {
+    display: flex;
+    flex-direction: column;
+    padding: 1.8rem 1.6rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .pkg--featured {
+    border-color: var(--accent);
+    box-shadow: var(--shadow);
+    position: relative;
+  }
+  .pkg__badge {
+    position: absolute;
+    top: -0.7rem;
+    left: 1.6rem;
+    background: var(--accent);
+    color: var(--on-accent);
+    font-size: var(--t-xs);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.7rem;
+    border-radius: var(--r-pill);
+  }
+  .pkg__name { font-size: var(--t-xl); margin-bottom: 0.6rem; }
+  .pkg__price {
+    font-family: var(--font-display);
+    color: var(--ink);
+  }
+  .pkg__amount { font-size: var(--t-xl); }
+  .pkg__audience {
+    font-size: var(--t-sm);
+    color: var(--ink-2);
+    margin-top: 0.8rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .pkg__features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin: 1.1rem 0 1.4rem;
+    flex: 1;
+  }
+  .pkg__features li {
+    display: flex;
+    gap: 0.55rem;
+    font-size: var(--t-sm);
+    color: var(--ink-2);
+  }
+  .pkg__check { color: var(--accent); flex: none; margin-top: 2px; }
+  .pkg__cta { justify-content: center; gap: 0.5rem; }
+</style>

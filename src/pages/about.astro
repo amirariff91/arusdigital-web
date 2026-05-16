@@ -1,0 +1,237 @@
+---
+import Base from '@layouts/Base.astro';
+import Reveal from '@components/Reveal.astro';
+import CtaSection from '@components/CtaSection.astro';
+import { proofStack } from '@data/proof';
+
+const team = [
+  {
+    initial: 'A',
+    name: 'Amir Ariff',
+    role: 'Founder & CEO',
+    bio: 'Built Arus Digital from the ground up as an AI-operated company. Miccy is the intelligence officer he wished he had as a CEO. Ships product, writes the playbook, and reaches you fastest on WhatsApp.',
+    tags: ['AI Strategy', 'Product', 'Growth'],
+  },
+  {
+    initial: 'H',
+    name: 'Mohd Hazim',
+    role: 'Co-Founder & Director',
+    bio: 'Managing Director of Amtrade Venture Sdn Bhd — engineering, fabrication and O&G solutions. Brings deep industrial-sector expertise and an enterprise network, driving adoption across O&G, manufacturing and heavy industry.',
+    tags: ['O&G Sector', 'Enterprise BD', 'Operations'],
+  },
+  {
+    initial: 'F',
+    name: 'Amirul Farhan',
+    role: 'Head of Digital & Growth',
+    bio: 'Eight years driving digital strategy at scale — grew Suria FM to 566.7M content views and 4M+ social followers. Leads AI-powered marketing, campaign execution and client growth programmes.',
+    tags: ['Digital Marketing', 'AI Content', 'Analytics'],
+  },
+];
+---
+<Base
+  title="About — Arus Digital"
+  description="Arus Digital is an AI-native marketing agency based in Kuala Lumpur. Three people, delivering agency-scale output by running the whole operation on AI."
+  path="/about"
+>
+  <!-- Hero -->
+  <section class="section">
+    <div class="container about-hero">
+      <Reveal>
+        <p class="eyebrow">About Arus Digital</p>
+        <h1>We run on AI.<br /><em>Entirely.</em></h1>
+        <p class="lead">
+          Arus Digital is a marketing agency built the way agencies will be
+          built from here on. Three people in Kuala Lumpur, delivering the
+          output of a much larger team — because autonomous AI agents do the
+          volume and people own the judgement.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="section section--alt">
+    <div class="container about-story">
+      <Reveal class="about-story__col">
+        <p class="eyebrow">The story</p>
+        <h2>Built in KL.<br />Built for SEA.</h2>
+      </Reveal>
+      <Reveal class="about-story__col" delay={80}>
+        <p>
+          We did not bolt AI onto an old agency model. We started from the
+          question: if AI agents can do the work, what should an agency
+          actually be? The answer is leaner, faster, and far more transparent
+          than the agencies most SEA businesses have dealt with.
+        </p>
+        <p>
+          We built Miccy — an AI intelligence product — for ourselves first.
+          Then we turned the same approach outward: SEO, paid, content, CRO,
+          web and social, all delivered by agents under human direction. We are
+          our own first case study.
+        </p>
+        <p>
+          We are a young agency. We are honest about that. What we offer
+          instead of a decade of logos is speed, transparency, and work you can
+          check at any moment.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- How we run -->
+  <section class="section section--dark">
+    <div class="container">
+      <Reveal class="about-head">
+        <p class="eyebrow">How we run</p>
+        <h2>Our own operation,<br />on AI.</h2>
+        <p class="lead" style="color:var(--on-dark-2)">
+          This is the internal stack that lets three people deliver
+          agency-scale work. We show it because it is the proof.
+        </p>
+      </Reveal>
+      <div class="about-stack">
+        {proofStack.map((p, i) => (
+          <Reveal delay={i * 50} class="about-stack__card">
+            <span class="about-stack__fn">{p.fn}</span>
+            <span class="about-stack__tool">{p.tool}</span>
+            <p class="about-stack__desc">{p.desc}</p>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section">
+    <div class="container">
+      <Reveal class="about-head">
+        <p class="eyebrow">The team</p>
+        <h2>The humans behind the AI.</h2>
+        <p class="lead">
+          AI executes. These three set the strategy, judge the taste and own
+          every client relationship.
+        </p>
+      </Reveal>
+      <div class="team-grid">
+        {team.map((member, i) => (
+          <Reveal delay={i * 70} class="team-card">
+            <div class="team-card__head">
+              <span class="team-card__avatar" aria-hidden="true">{member.initial}</span>
+              <div>
+                <span class="team-card__name">{member.name}</span>
+                <span class="team-card__role">{member.role}</span>
+              </div>
+            </div>
+            <p class="team-card__bio">{member.bio}</p>
+            <div class="team-card__tags">
+              {member.tags.map((t) => <span class="team-card__tag">{t}</span>)}
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaSection />
+</Base>
+
+<style>
+  .about-hero { max-width: 48rem; }
+  .about-hero h1 { margin: 0.9rem 0 1rem; }
+  .about-hero h1 em { color: var(--accent); }
+
+  .about-story {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 860px) {
+    .about-story { grid-template-columns: 1fr 1.3fr; gap: 3.5rem; }
+  }
+  .about-story__col h2 { margin-top: 0.7rem; }
+  .about-story__col p { margin-bottom: 1rem; font-size: var(--t-base); color: var(--ink-2); }
+
+  .about-head { max-width: 38rem; margin-bottom: 2.5rem; }
+  .about-head h2 { margin: 0.7rem 0 0.8rem; }
+
+  .about-stack {
+    display: grid;
+    gap: 1.1rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 600px) { .about-stack { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 940px) { .about-stack { grid-template-columns: repeat(3, 1fr); } }
+  .about-stack__card {
+    padding: 1.4rem;
+    background: var(--dark-2);
+    border: 1px solid var(--dark-line);
+    border-radius: var(--r);
+  }
+  .about-stack__fn {
+    font-size: var(--t-xs);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .about-stack__tool {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--t-lg);
+    color: var(--on-dark);
+    margin: 0.35rem 0 0.45rem;
+  }
+  .about-stack__desc { font-size: var(--t-sm); color: var(--on-dark-2); }
+
+  .team-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 720px) { .team-grid { grid-template-columns: repeat(3, 1fr); } }
+  .team-card {
+    padding: 1.6rem 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .team-card__head {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 1rem;
+  }
+  .team-card__avatar {
+    display: grid;
+    place-items: center;
+    width: 3rem; height: 3rem;
+    flex: none;
+    border-radius: var(--r-pill);
+    background: var(--accent);
+    color: var(--on-accent);
+    font-family: var(--font-display);
+    font-size: var(--t-xl);
+  }
+  .team-card__name {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--t-lg);
+    color: var(--ink);
+  }
+  .team-card__role { font-size: var(--t-sm); color: var(--accent); }
+  .team-card__bio { font-size: var(--t-sm); color: var(--ink-2); }
+  .team-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1rem;
+  }
+  .team-card__tag {
+    font-size: var(--t-xs);
+    color: var(--ink-3);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--r-pill);
+    padding: 0.2rem 0.65rem;
+  }
+</style>
