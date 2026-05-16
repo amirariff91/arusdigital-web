@@ -1,0 +1,67 @@
+---
+import { site } from '@data/site';
+
+/**
+ * Per-page <head> meta: title, description, canonical, Open Graph, Twitter,
+ * and optional JSON-LD. Organization schema is emitted site-wide from here;
+ * pages pass extra schema (Service, SoftwareApplication, etc.) via `jsonLd`.
+ */
+interface Props {
+  title: string;
+  description: string;
+  /** path only, e.g. "/services/seo" — canonical is built from site.domain */
+  path: string;
+  /** og image path relative to site root; defaults to the shared one */
+  ogImage?: string;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+const { title, description, path, ogImage = '/og/default.png', noindex = false, jsonLd } = Astro.props;
+
+const canonical = new URL(path === '/' ? '' : path, site.domain).href;
+const ogUrl = new URL(ogImage, site.domain).href;
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: site.legalName,
+  alternateName: site.name,
+  url: site.domain,
+  description: site.description,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Kuala Lumpur',
+    addressCountry: 'MY',
+  },
+  areaServed: ['MY', 'SG', 'ID'],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'sales',
+    availableLanguage: ['English', 'Malay'],
+  },
+};
+
+const extra = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+const schemas = [orgSchema, ...extra];
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogUrl} />
+<meta property="og:locale" content="en_MY" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogUrl} />
+
+{schemas.map((s) => (
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(s)} />
+))}

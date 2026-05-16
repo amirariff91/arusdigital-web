@@ -1,0 +1,17 @@
+---
+/**
+ * Scroll-reveal wrapper. Adds the `.reveal` class; the IntersectionObserver
+ * in Base.astro flips `.is-visible` when it scrolls into view.
+ * Falls back to fully-visible with no JS and under prefers-reduced-motion.
+ */
+interface Props {
+  as?: keyof HTMLElementTagNameMap;
+  delay?: number;
+  class?: string;
+}
+const { as = 'div', delay = 0, class: className = '' } = Astro.props;
+const Tag = as;
+---
+<Tag class:list={['reveal', className]} style={delay ? `transition-delay:${delay}ms` : undefined}>
+  <slot />
+</Tag>

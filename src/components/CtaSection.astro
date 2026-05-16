@@ -1,0 +1,68 @@
+---
+import Icon from './Icon.astro';
+import Reveal from './Reveal.astro';
+import { whatsappLink } from '@data/site';
+
+interface Props {
+  title?: string;
+  text?: string;
+  waMessage?: string;
+}
+const {
+  title = 'Ready to see what an AI-run agency can do?',
+  text = 'Get a free AI marketing audit. We reply the same day — no commitment, no pitch deck.',
+  waMessage = 'Hi Arus Digital, I would like a free AI marketing audit.',
+} = Astro.props;
+---
+<section class="section section--dark cta">
+  <div class="container">
+    <Reveal class="cta__box">
+      <p class="eyebrow">Get started</p>
+      <h2 class="cta__title">{title}</h2>
+      <p class="cta__text">{text}</p>
+      <div class="cta__actions">
+        <a href="/audit" class="btn btn--accent">
+          Get a free audit
+          <Icon name="arrow" size={15} />
+        </a>
+        <a href={whatsappLink(waMessage)} class="btn btn--ghost" target="_blank" rel="noopener">
+          <Icon name="whatsapp" size={16} />
+          Chat on WhatsApp
+        </a>
+      </div>
+      <p class="cta__micro">Same-day reply · No commitment · PDPA compliant</p>
+    </Reveal>
+  </div>
+</section>
+
+<style>
+  .cta__box {
+    max-width: 40rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+  .cta__box .eyebrow { justify-content: center; }
+  .cta__box .eyebrow::before { display: none; }
+  .cta__title {
+    font-size: var(--t-3xl);
+    margin: 0.7rem 0 0.6rem;
+  }
+  .cta__text {
+    color: var(--on-dark-2);
+    font-size: var(--t-lg);
+    max-width: 34rem;
+    margin-inline: auto;
+  }
+  .cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    justify-content: center;
+    margin-top: 1.6rem;
+  }
+  .cta__micro {
+    margin-top: 1.1rem;
+    font-size: var(--t-xs);
+    color: var(--on-dark-mute);
+  }
+</style>

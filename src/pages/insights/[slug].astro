@@ -1,0 +1,168 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '@layouts/Base.astro';
+import Reveal from '@components/Reveal.astro';
+import Icon from '@components/Icon.astro';
+import CtaSection from '@components/CtaSection.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('insights');
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+
+const dateFmt = new Intl.DateTimeFormat('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: d.title,
+  description: d.description,
+  datePublished: d.pubDate.toISOString(),
+  author: { '@type': 'Organization', name: d.author },
+  publisher: { '@type': 'Organization', name: 'Arus Digital' },
+};
+---
+<Base
+  title={`${d.title} — Arus Digital`}
+  description={d.description}
+  path={`/insights/${entry.id}`}
+  noindex={d.draft}
+  jsonLd={jsonLd}
+>
+  <!-- Hero -->
+  <section class="article-hero section">
+    <div class="container container-narrow">
+      <a href="/insights" class="article-hero__back">
+        <Icon name="arrow" size={14} class="article-hero__back-icon" />All insights
+      </a>
+      <h1>{d.title}</h1>
+      <div class="article-hero__meta">
+        <time datetime={d.pubDate.toISOString()}>{dateFmt.format(d.pubDate)}</time>
+        <span class="article-hero__dot" aria-hidden="true">·</span>
+        <span>{d.author}</span>
+      </div>
+      {d.tags.length > 0 && (
+        <div class="article-hero__tags">
+          {d.tags.map((t) => <span class="article-hero__tag">{t}</span>)}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Body -->
+  <section class="section">
+    <div class="container">
+      <Reveal class="prose">
+        <Content />
+      </Reveal>
+      <Reveal class="article-foot" delay={60}>
+        <a href="/insights" class="article-foot__back">
+          <Icon name="arrow" size={14} class="article-hero__back-icon" />Back to all insights
+        </a>
+      </Reveal>
+    </div>
+  </section>
+
+  <CtaSection />
+</Base>
+
+<style>
+  .article-hero__back,
+  .article-foot__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: var(--t-sm);
+    color: var(--ink-3);
+  }
+  .article-hero__back { margin-bottom: 1.25rem; }
+  .article-hero__back:hover,
+  .article-foot__back:hover { color: var(--accent); }
+  .article-hero__back-icon { transform: rotate(180deg); }
+
+  .article-hero h1 { margin-bottom: 1rem; }
+  .article-hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: var(--t-sm);
+    color: var(--ink-3);
+  }
+  .article-hero__dot { color: var(--border-strong); }
+  .article-hero__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1.1rem;
+  }
+  .article-hero__tag {
+    font-size: var(--t-xs);
+    color: var(--ink-3);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--r-pill);
+    padding: 0.2rem 0.65rem;
+  }
+
+  .prose {
+    max-width: 68ch;
+    margin-inline: auto;
+    font-size: var(--t-base);
+    color: var(--ink-2);
+  }
+  .prose :global(p) { margin-top: 1.1rem; line-height: 1.7; }
+  .prose :global(h2) {
+    font-family: var(--font-display);
+    font-size: var(--t-xl);
+    color: var(--ink);
+    margin-top: 2.2rem;
+  }
+  .prose :global(h3) {
+    font-family: var(--font-display);
+    font-size: var(--t-lg);
+    color: var(--ink);
+    margin-top: 1.6rem;
+  }
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin-top: 1.1rem;
+    padding-left: 1.3rem;
+  }
+  .prose :global(ul) { list-style: disc; }
+  .prose :global(ol) { list-style: decimal; }
+  .prose :global(li) { margin-top: 0.45rem; line-height: 1.65; }
+  .prose :global(a) {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .prose :global(a:hover) { color: var(--accent-deep); }
+  .prose :global(blockquote) {
+    margin: 1.4rem 0;
+    padding: 0.2rem 0 0.2rem 1.2rem;
+    border-left: 3px solid var(--accent);
+    font-family: var(--font-display);
+    font-size: var(--t-lg);
+    color: var(--ink);
+  }
+  .prose :global(strong) { color: var(--ink); }
+
+  .article-foot {
+    max-width: 68ch;
+    margin: 2.5rem auto 0;
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--border);
+  }
+</style>

@@ -1,0 +1,60 @@
+---
+/**
+ * Arus Digital wordmark. "Arus" is Malay for current / flow — the mark is a
+ * circular badge holding a flowing-current glyph. Pure SVG + text, no image.
+ */
+interface Props {
+  href?: string | null;
+  tone?: 'ink' | 'light';
+  class?: string;
+}
+const { href = '/', tone = 'ink', class: className = '' } = Astro.props;
+const Tag = href ? 'a' : 'span';
+---
+<Tag
+  {...href ? { href } : {}}
+  class:list={['wordmark', `wordmark--${tone}`, className]}
+  aria-label="Arus Digital — home"
+>
+  <svg class="wordmark__mark" width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
+    <circle cx="15" cy="15" r="14" class="wordmark__ring" />
+    <path
+      d="M6 12.5c2.4 0 2.4 2.6 4.8 2.6S13.2 12.5 15.6 12.5 18 15.1 20.4 15.1 22.8 12.5 24 12.5"
+      class="wordmark__wave"
+    />
+    <path
+      d="M6 18c2.4 0 2.4 2.6 4.8 2.6S13.2 18 15.6 18 18 20.6 20.4 20.6 22.8 18 24 18"
+      class="wordmark__wave wordmark__wave--2"
+    />
+  </svg>
+  <span class="wordmark__text">Arus<span class="wordmark__text-2">&nbsp;Digital</span></span>
+</Tag>
+
+<style>
+  .wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: var(--font-display);
+    font-size: 1.22rem;
+    font-weight: 560;
+    letter-spacing: -0.012em;
+  }
+  .wordmark__mark { flex: none; }
+  .wordmark__ring { fill: none; stroke-width: 1.6; }
+  .wordmark__wave {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 1.9;
+    stroke-linecap: round;
+  }
+  .wordmark__wave--2 { opacity: 0.55; }
+
+  .wordmark--ink .wordmark__ring { stroke: var(--border-strong); }
+  .wordmark--ink .wordmark__text { color: var(--ink); }
+  .wordmark--ink .wordmark__text-2 { color: var(--ink-3); }
+
+  .wordmark--light .wordmark__ring { stroke: var(--dark-line); }
+  .wordmark--light .wordmark__text { color: var(--on-dark); }
+  .wordmark--light .wordmark__text-2 { color: var(--on-dark-mute); }
+</style>

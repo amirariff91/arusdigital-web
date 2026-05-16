@@ -1,0 +1,90 @@
+---
+import Base from '@layouts/Base.astro';
+import Reveal from '@components/Reveal.astro';
+import Icon from '@components/Icon.astro';
+import AuditForm from '@components/AuditForm.astro';
+
+const checklist = [
+  'Where your site leaks traffic and conversions',
+  'How you show up on Google — and inside AI answers',
+  'Which channels are worth your budget, and which are not',
+  'The two or three moves that would move the needle fastest',
+];
+---
+<Base
+  title="Free AI Marketing Audit — Arus Digital"
+  description="Request a free AI marketing audit. We review your site, search presence and channels, then show you exactly where the money leaks. Same-day reply on WhatsApp."
+  path="/audit"
+>
+  <section class="section">
+    <div class="container audit">
+      <div class="audit__intro">
+        <Reveal>
+          <p class="eyebrow">Free AI marketing audit</p>
+          <h1>See where your<br />marketing leaks money.</h1>
+          <p class="lead">
+            Tell us about your business and our team reviews your site, search
+            presence and channels. You get a clear, honest read on what to fix
+            first — no automated report, no obligation.
+          </p>
+          <ul class="audit__list">
+            {checklist.map((item) => (
+              <li><Icon name="check" size={17} class="audit__check" />{item}</li>
+            ))}
+          </ul>
+          <p class="audit__how">
+            <strong>How it works:</strong> send the form below, it opens a
+            WhatsApp message you can fire straight to us. We reply the same day
+            with first observations and book a short call if it makes sense.
+          </p>
+        </Reveal>
+      </div>
+
+      <Reveal class="audit__formwrap" delay={90}>
+        <h2 class="audit__formtitle">Request your audit</h2>
+        <AuditForm />
+      </Reveal>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .audit {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 900px) {
+    .audit { grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: start; }
+  }
+  .audit__intro h1 { font-size: var(--t-3xl); margin: 0.8rem 0 0.9rem; }
+  .audit__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin: 1.5rem 0;
+  }
+  .audit__list li {
+    display: flex;
+    gap: 0.6rem;
+    font-size: var(--t-sm);
+    color: var(--ink-2);
+  }
+  .audit__check { color: var(--accent); flex: none; margin-top: 2px; }
+  .audit__how {
+    font-size: var(--t-sm);
+    color: var(--ink-2);
+    background: var(--accent-faint);
+    border: 1px solid var(--accent-soft);
+    border-radius: var(--r);
+    padding: 0.95rem 1.1rem;
+  }
+  .audit__how strong { color: var(--ink); }
+  .audit__formwrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: clamp(1.4rem, 3vw, 2.1rem);
+  }
+  .audit__formtitle { font-size: var(--t-xl); margin-bottom: 1.2rem; }
+</style>

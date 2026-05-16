@@ -1,0 +1,122 @@
+---
+import Icon from './Icon.astro';
+import { whatsappLink } from '@data/site';
+
+interface Package {
+  name: string;
+  price: number | 'Custom';
+  currency: string;
+  billingPeriod: string;
+  priceNote?: string;
+  features: string[];
+  highlighted: boolean;
+}
+interface Props {
+  packages: Package[];
+  serviceName: string;
+}
+const { packages, serviceName } = Astro.props;
+
+const periodLabel: Record<string, string> = {
+  month: '/month',
+  project: '/project',
+  retainer: '/month retainer',
+};
+---
+<div class="pkgs">
+  {packages.map((pkg) => (
+    <article class:list={['pkg', { 'pkg--featured': pkg.highlighted }]}>
+      {pkg.highlighted && <span class="pkg__badge">Most popular</span>}
+      <h3 class="pkg__name">{pkg.name}</h3>
+      <div class="pkg__price">
+        {pkg.price === 'Custom' ? (
+          <span class="pkg__amount">Custom</span>
+        ) : (
+          <>
+            <span class="pkg__cur">{pkg.currency}</span>
+            <span class="pkg__amount">{pkg.price.toLocaleString('en-MY')}</span>
+            <span class="pkg__period">{periodLabel[pkg.billingPeriod] ?? ''}</span>
+          </>
+        )}
+      </div>
+      {pkg.priceNote && <p class="pkg__note">{pkg.priceNote}</p>}
+      <ul class="pkg__features">
+        {pkg.features.map((f) => (
+          <li><Icon name="check" size={16} class="pkg__check" />{f}</li>
+        ))}
+      </ul>
+      <a
+        href={whatsappLink(`Hi Arus Digital, I'm interested in the ${pkg.name} package for ${serviceName}.`)}
+        target="_blank"
+        rel="noopener"
+        class:list={['btn', pkg.highlighted ? 'btn--accent' : 'btn--ghost', 'pkg__cta']}
+      >
+        {pkg.price === 'Custom' ? "Let's talk" : 'Get started'}
+      </a>
+    </article>
+  ))}
+</div>
+
+<style>
+  .pkgs {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 720px) {
+    .pkgs { grid-template-columns: repeat(3, 1fr); align-items: start; }
+  }
+  .pkg {
+    display: flex;
+    flex-direction: column;
+    padding: 1.7rem 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+  }
+  .pkg--featured {
+    border-color: var(--accent);
+    box-shadow: var(--shadow);
+    position: relative;
+  }
+  .pkg__badge {
+    position: absolute;
+    top: -0.7rem;
+    left: 1.5rem;
+    background: var(--accent);
+    color: var(--on-accent);
+    font-size: var(--t-xs);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.7rem;
+    border-radius: var(--r-pill);
+  }
+  .pkg__name { font-size: var(--t-xl); margin-bottom: 0.7rem; }
+  .pkg__price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.2rem;
+    font-family: var(--font-display);
+    color: var(--ink);
+  }
+  .pkg__cur { font-size: var(--t-base); color: var(--ink-3); }
+  .pkg__amount { font-size: var(--t-2xl); }
+  .pkg__period { font-size: var(--t-sm); color: var(--ink-3); font-family: var(--font-sans); }
+  .pkg__note { font-size: var(--t-xs); color: var(--ink-3); margin-top: 0.35rem; }
+  .pkg__features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin: 1.1rem 0 1.4rem;
+    flex: 1;
+  }
+  .pkg__features li {
+    display: flex;
+    gap: 0.55rem;
+    font-size: var(--t-sm);
+    color: var(--ink-2);
+  }
+  .pkg__check { color: var(--accent); flex: none; margin-top: 2px; }
+  .pkg__cta { justify-content: center; }
+</style>

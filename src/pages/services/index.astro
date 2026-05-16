@@ -1,0 +1,58 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '@layouts/Base.astro';
+import Reveal from '@components/Reveal.astro';
+import ServiceCard from '@components/ServiceCard.astro';
+import CtaSection from '@components/CtaSection.astro';
+
+const entries = (await getCollection('services')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+<Base
+  title="Services — Arus Digital"
+  description="Full-service digital marketing run by AI agents: SEO & AI Search, paid advertising, content, conversion optimization, web, and social."
+  path="/services"
+>
+  <section class="section">
+    <div class="container">
+      <Reveal class="services-head">
+        <p class="eyebrow">What we do</p>
+        <h1>Every service a full agency offers — run by AI.</h1>
+        <p class="lead">
+          Six marketing services, each delivered by autonomous AI agents under
+          human direction. Take one, or hand us the whole funnel.
+        </p>
+      </Reveal>
+      <div class="services-grid">
+        {entries.map((entry, i) => (
+          <Reveal delay={i * 60}>
+            <ServiceCard
+              title={entry.data.title}
+              href={`/services/${entry.id}`}
+              summary={entry.data.cardSummary}
+              icon={entry.data.icon}
+              index={entry.data.order}
+            />
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaSection />
+</Base>
+
+<style>
+  .services-head { max-width: 42rem; margin-bottom: 2.75rem; }
+  .services-head h1 { font-size: var(--t-3xl); margin: 0.8rem 0 0.9rem; }
+  .services-grid {
+    display: grid;
+    gap: 1.1rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 600px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 940px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
+  .services-grid > :global(.reveal) { display: flex; }
+  .services-grid > :global(.reveal) > :global(.svc) { width: 100%; }
+</style>

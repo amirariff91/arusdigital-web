@@ -1,0 +1,147 @@
+---
+import Base from '@layouts/Base.astro';
+import Reveal from '@components/Reveal.astro';
+import Icon from '@components/Icon.astro';
+import AuditForm from '@components/AuditForm.astro';
+import { site, whatsappLink } from '@data/site';
+
+const waUrl = whatsappLink('Hi Arus Digital, I would like to talk about a project.');
+---
+<Base
+  title="Contact — Arus Digital"
+  description="Talk to Arus Digital. Message us on WhatsApp for a same-day reply, email us, or tell us what you need and we will get back to you fast."
+  path="/contact"
+>
+  <!-- Hero -->
+  <section class="section">
+    <div class="container contact-hero">
+      <Reveal>
+        <p class="eyebrow">Contact</p>
+        <h1>Let's talk.</h1>
+        <p class="lead">
+          The fastest way to reach us is WhatsApp. Tell us what you need and we
+          reply the same day with a real person, not a ticket number.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- Two columns -->
+  <section class="section section--alt">
+    <div class="container contact-grid">
+      <Reveal class="contact-ways">
+        <p class="eyebrow">Ways to reach us</p>
+        <h2>Pick whatever<br />suits you.</h2>
+
+        <ul class="contact-list">
+          <li class="contact-item">
+            <span class="contact-item__icon"><Icon name="whatsapp" size={20} /></span>
+            <div>
+              <span class="contact-item__label">WhatsApp</span>
+              <a href={waUrl} class="contact-item__value" target="_blank" rel="noopener">
+                {site.whatsapp.display}
+              </a>
+              <p class="contact-item__note">Same-day reply, every working day.</p>
+            </div>
+          </li>
+          <li class="contact-item">
+            <span class="contact-item__icon"><Icon name="content" size={20} /></span>
+            <div>
+              <span class="contact-item__label">Email</span>
+              <a href={`mailto:${site.email}`} class="contact-item__value">{site.email}</a>
+              <p class="contact-item__note">For briefs, documents and longer notes.</p>
+            </div>
+          </li>
+          <li class="contact-item">
+            <span class="contact-item__icon"><Icon name="layers" size={20} /></span>
+            <div>
+              <span class="contact-item__label">Where we are</span>
+              <span class="contact-item__value contact-item__value--static">
+                Kuala Lumpur, Malaysia
+              </span>
+              <p class="contact-item__note">Serving businesses across SEA.</p>
+            </div>
+          </li>
+        </ul>
+      </Reveal>
+
+      <Reveal class="contact-formwrap" delay={90}>
+        <h2 class="contact-formtitle">Tell us what you need</h2>
+        <p class="contact-formintro">
+          Fill this in and it opens a WhatsApp message you can send straight to
+          us. We read every one ourselves and reply the same day.
+        </p>
+        <AuditForm />
+      </Reveal>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .contact-hero { max-width: 44rem; }
+  .contact-hero h1 { margin: 0.9rem 0 1rem; }
+
+  .contact-grid {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 900px) {
+    .contact-grid { grid-template-columns: 1fr 1.15fr; gap: 3.5rem; align-items: start; }
+  }
+
+  .contact-ways h2 { margin: 0.7rem 0 1.6rem; }
+  .contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+  .contact-item {
+    display: flex;
+    gap: 0.95rem;
+    padding: 1.2rem 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+  }
+  .contact-item__icon {
+    display: grid;
+    place-items: center;
+    width: 2.6rem; height: 2.6rem;
+    flex: none;
+    border-radius: var(--r-sm);
+    background: var(--accent-faint);
+    color: var(--accent);
+  }
+  .contact-item__label {
+    display: block;
+    font-size: var(--t-xs);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .contact-item__value {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--t-lg);
+    color: var(--ink);
+    margin: 0.2rem 0 0.2rem;
+  }
+  a.contact-item__value:hover { color: var(--accent); }
+  .contact-item__value--static { color: var(--ink); }
+  .contact-item__note { font-size: var(--t-sm); color: var(--ink-2); }
+
+  .contact-formwrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: clamp(1.4rem, 3vw, 2.1rem);
+  }
+  .contact-formtitle { font-size: var(--t-xl); margin-bottom: 0.5rem; }
+  .contact-formintro {
+    font-size: var(--t-sm);
+    color: var(--ink-2);
+    margin-bottom: 1.3rem;
+  }
+</style>
