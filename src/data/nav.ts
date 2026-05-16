@@ -45,6 +45,7 @@ export const footerNav = [
       { label: 'Work', href: '/work' },
       { label: 'Insights', href: '/insights' },
       { label: 'Contact', href: '/contact' },
+      { label: 'Privacy', href: '/privacy' },
     ],
   },
   {
