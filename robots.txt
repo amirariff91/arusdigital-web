@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://arusdigital.com/sitemap.xml
