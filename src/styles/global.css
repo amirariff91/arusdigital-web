@@ -118,7 +118,7 @@ em { font-style: italic; }
   color: var(--ink);
   border-color: var(--border-strong);
 }
-.btn--ghost:hover { border-color: var(--ink); background: var(--surface); }
+.btn--ghost:hover { border-color: var(--accent); background: var(--accent-faint); color: var(--accent-deep); }
 
 .section--dark .btn--ghost {
   color: var(--on-dark);

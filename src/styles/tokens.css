@@ -1,44 +1,50 @@
 /* ============================================================
    Arus Digital — design tokens
-   Direction: "Warm Editorial" (design-shotgun variant D, approved 2026-05-16)
-   Warm cream paper, rich warm ink, terracotta-amber accent.
+   Direction: "Light + Blue" (approved 2026-06-15)
+   Logo-derived palette (#1F49EE → #20E0C3), white surfaces,
+   deep navy ink. Precise · Fast · Trustworthy.
    ============================================================ */
 
 :root {
   /* ---- Surfaces ---- */
-  --paper:        #f4ede1; /* page background — warm cream */
-  --paper-2:      #efe5d4; /* alternating section background */
-  --surface:      #fbf8f0; /* raised cards, lighter than paper */
-  --surface-2:    #f6efe1; /* sunken / inset panels */
+  --paper:        #F0F4FF; /* page background — light blue tint */
+  --paper-2:      #E8EEFF; /* alternating section background */
+  --surface:      #FFFFFF; /* raised cards */
+  --surface-2:    #F5F8FF; /* sunken / inset panels */
 
   /* ---- Ink (text) ---- */
-  --ink:          #211b16; /* headings + primary text — warm near-black */
-  --ink-2:        #4c4339; /* body / secondary text */
-  --ink-3:        #877c6c; /* muted text, eyebrows, captions */
+  --ink:          #0A0F2E; /* headings + primary text — deep navy */
+  --ink-2:        #2D3460; /* body / secondary text */
+  --ink-3:        #6B74A8; /* muted text, captions */
 
-  /* ---- Accent — terracotta amber ---- */
-  --accent:       #c0623a;
-  --accent-deep:  #9d4a28; /* hover / pressed */
-  --accent-soft:  #ecd9c8; /* tint background */
-  --accent-faint: #f1e6d9; /* very soft tint */
-  --on-accent:    #fbf8f0; /* text on accent fills */
+  /* ---- Accent — brand blue ---- */
+  --accent:       #1F49EE;
+  --accent-deep:  #1538C8; /* hover / pressed */
+  --accent-soft:  #D6E0FF; /* tint background */
+  --accent-faint: #EBF0FF; /* very soft tint */
+  --on-accent:    #FFFFFF; /* text on accent fills */
+
+  /* ---- Brand gradient (logo-derived; use sparingly) ---- */
+  --gradient:     linear-gradient(135deg, #1F49EE 0%, #246EFF 50%, #20E0C3 100%);
+  --teal:         #20E0C3;
+  --cyan:         #24BDFF;
 
   /* ---- Lines ---- */
-  --border:        #e2d7c2; /* hairline on paper */
-  --border-strong: #cdbfa3;
+  --border:        #D0D8F0; /* hairline on surface */
+  --border-strong: #B0BCEB;
 
   /* ---- Status / severity ---- */
-  --error:          #b4472d; /* invalid form input */
-  --status-watch:   #c79a3a; /* amber — "watch" signal */
-  --status-ok:      #5a7d52; /* green — "opportunity" signal */
+  --error:          #B4472D;
+  --status-watch:   #C79A3A;
+  --status-ok:      #5A7D52;
 
   /* ---- Dark sections (footer, proof band) ---- */
-  --dark:         #211b16;
-  --dark-2:       #2c2520;
-  --dark-line:    rgba(244, 237, 225, 0.12);
-  --on-dark:      #f4ede1;
-  --on-dark-2:    #d6ccb8;
-  --on-dark-mute: #b0a48f;
+  --dark:         #0A0F2E;
+  --dark-2:       #111835;
+  --dark-line:    rgba(176, 188, 235, 0.15);
+  --on-dark:      #F0F4FF;
+  --on-dark-2:    #B8C5F0;
+  --on-dark-mute: #7B8EC8;
 
   /* ---- Typography ---- */
   --font-display: 'Fraunces Variable', 'Fraunces', Georgia, 'Times New Roman', serif;
@@ -60,10 +66,10 @@
   --r-lg:   20px;
   --r-pill: 999px;
 
-  /* ---- Shadows — warm, soft ---- */
-  --shadow-sm: 0 1px 2px rgba(33, 27, 22, 0.05);
-  --shadow:    0 6px 24px -10px rgba(33, 27, 22, 0.18);
-  --shadow-lg: 0 24px 60px -24px rgba(33, 27, 22, 0.30);
+  /* ---- Shadows — blue-tinted ---- */
+  --shadow-sm: 0 1px 2px rgba(10, 15, 46, 0.06);
+  --shadow:    0 6px 24px -10px rgba(10, 15, 46, 0.16);
+  --shadow-lg: 0 24px 60px -24px rgba(31, 73, 238, 0.18);
 
   /* ---- Layout ---- */
   --container: 1180px;
